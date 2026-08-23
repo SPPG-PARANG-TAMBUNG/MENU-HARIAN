@@ -702,4 +702,17 @@ h2 {
     break-inside: avoid;
     box-shadow: none;
   }
+/* Hilangkan lingkaran dan angka pada menu */
+.menu-item dt {
+  display: none;
+}
+
+.menu-item {
+  grid-template-columns: 1fr;
+}
+
+/* Hilangkan lingkaran dan angka pada kolom sebelah */
+.notice-number {
+  display: none;
+}
 }
