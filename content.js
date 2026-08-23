@@ -24,7 +24,7 @@ window.LABEL_DATA = {
     date: "Senin, 24 Agustus 2026",
   },
 
-  // Nomor menu dibuat otomatis. Cukup ganti bagian value.
+  // Cukup ganti bagian value untuk memperbarui daftar menu.
   menu: [
     { value: "Diwan" },
     { value: "Dede" },

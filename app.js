@@ -27,15 +27,11 @@
 
     list.replaceChildren(
       ...items.map((item, index) => {
-        const row = document.createElement("div");
-        const number = document.createElement("dt");
-        const value = document.createElement("dd");
-
-        row.className = "menu-item";
-        number.textContent = String(index + 1).padStart(2, "0");
-        value.textContent = item.value;
-        row.append(number, value);
-        return row;
+        const itemElement = document.createElement("li");
+        itemElement.className = "menu-item";
+        itemElement.textContent = item.value;
+        itemElement.style.setProperty("--item-index", index);
+        return itemElement;
       }),
     );
   };
@@ -45,13 +41,14 @@
     if (!grid || !Array.isArray(items)) return;
 
     grid.replaceChildren(
-      ...items.map((item) => {
+      ...items.map((item, index) => {
         const card = document.createElement("div");
         const value = document.createElement("strong");
         const unit = document.createElement("span");
         const label = document.createElement("small");
 
         card.className = `nutrition-item${item.highlight ? " nutrition-main" : ""}`;
+        card.style.setProperty("--item-index", index);
         value.textContent = item.value;
         unit.textContent = item.unit;
         label.textContent = item.label;
@@ -91,6 +88,89 @@
     activateGroup(0);
   };
 
+  const initAlertSlider = () => {
+    const slider = document.getElementById("alert-slider");
+    const track = document.getElementById("alert-track");
+    const slides = Array.from(document.querySelectorAll(".alert-slide"));
+    const tabs = Array.from(document.querySelectorAll(".alert-tab"));
+    const toggle = document.getElementById("alert-toggle");
+
+    if (!slider || !track || slides.length < 2 || !toggle) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let activeIndex = 0;
+    let timer = null;
+    let isPaused = prefersReducedMotion;
+
+    const render = () => {
+      track.style.transform = `translateX(-${activeIndex * 100}%)`;
+
+      slides.forEach((slide, index) => {
+        const isActive = index === activeIndex;
+        slide.classList.toggle("is-active", isActive);
+        slide.setAttribute("aria-hidden", isActive ? "false" : "true");
+      });
+
+      tabs.forEach((tab, index) => {
+        const isActive = index === activeIndex;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+    };
+
+    const stop = () => {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    };
+
+    const start = () => {
+      stop();
+      if (isPaused || document.hidden) return;
+      timer = window.setInterval(() => {
+        activeIndex = (activeIndex + 1) % slides.length;
+        render();
+      }, 5000);
+    };
+
+    const goTo = (index) => {
+      activeIndex = (index + slides.length) % slides.length;
+      render();
+      start();
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => goTo(Number(tab.dataset.alertIndex)));
+    });
+
+    toggle.addEventListener("click", () => {
+      isPaused = !isPaused;
+      toggle.textContent = isPaused ? "Putar" : "Jeda";
+      toggle.setAttribute("aria-pressed", isPaused ? "true" : "false");
+      isPaused ? stop() : start();
+    });
+
+    slider.addEventListener("mouseenter", stop);
+    slider.addEventListener("mouseleave", start);
+    slider.addEventListener("focusin", stop);
+    slider.addEventListener("focusout", (event) => {
+      if (!slider.contains(event.relatedTarget)) start();
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      document.hidden ? stop() : start();
+    });
+
+    if (prefersReducedMotion) {
+      toggle.textContent = "Putar";
+      toggle.setAttribute("aria-pressed", "true");
+    }
+
+    render();
+    start();
+  };
+
   document.title = data.page.title;
   setMeta("description", data.page.description);
   setText("program-name", data.page.programName);
@@ -108,6 +188,7 @@
   renderNutritionGroups(data.nutrition.groups);
   setText("safe-consumption-message", data.safety.consumption);
   setText("allergy-message", data.safety.allergy);
+  initAlertSlider();
 
   setText("brand-name", data.sppg.name);
   setText("brand-unit", data.sppg.unit);

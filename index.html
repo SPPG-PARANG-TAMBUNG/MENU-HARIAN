@@ -79,43 +79,70 @@
             <span class="menu-badge">Per porsi</span>
           </div>
 
-          <dl class="menu-list" id="menu-list">
-            <div class="menu-item">
-              <dt>1</dt>
-              <dd>Diwan</dd>
-            </div>
-            <div class="menu-item">
-              <dt>2</dt>
-              <dd>Dede</dd>
-            </div>
-            <div class="menu-item">
-              <dt>3</dt>
-              <dd>Kevin</dd>
-            </div>
-            <div class="menu-item">
-              <dt>4</dt>
-              <dd>Challi</dd>
-            </div>
-            <div class="menu-item">
-              <dt>5</dt>
-              <dd>Heri</dd>
-            </div>
-          </dl>
+          <ul class="menu-list" id="menu-list">
+            <li class="menu-item">Diwan</li>
+            <li class="menu-item">Dede</li>
+            <li class="menu-item">Kevin</li>
+            <li class="menu-item">Challi</li>
+            <li class="menu-item">Heri</li>
+          </ul>
         </section>
 
-        <aside class="panel notice-panel" aria-label="Peringatan keamanan konsumsi">
-          <div class="notice-block notice-primary">
-            <span class="notice-number" aria-hidden="true">01</span>
-            <p id="safe-consumption-message">
-              BATAS AMAN KONSUMSI 2 JAM SETELAH MAKANAN DITERIMA
-            </p>
+        <aside
+          class="alert-slider"
+          id="alert-slider"
+          aria-label="Peringatan penting"
+          aria-roledescription="carousel"
+        >
+          <div class="alert-viewport">
+            <div class="alert-track" id="alert-track">
+              <section
+                class="alert-slide alert-critical is-active"
+                id="alert-slide-consumption"
+                aria-hidden="false"
+              >
+                <span class="alert-label">Penting</span>
+                <p id="safe-consumption-message">
+                  BATAS AMAN KONSUMSI 2 JAM SETELAH MAKANAN DITERIMA
+                </p>
+              </section>
+
+              <section
+                class="alert-slide alert-allergy"
+                id="alert-slide-allergy"
+                aria-hidden="true"
+              >
+                <span class="alert-label">Informasi alergi</span>
+                <p id="allergy-message">
+                  JIKA ADA PENERIMA MANFAAT YANG MEMILIKI RIWAYAT ALERGI TERTENTU SILAKAN
+                  DISAMPAIKAN SEGERA
+                </p>
+              </section>
+            </div>
           </div>
-          <div class="notice-block notice-secondary">
-            <span class="notice-number" aria-hidden="true">02</span>
-            <p id="allergy-message">
-              JIKA ADA PENERIMA MANFAAT YANG MEMILIKI RIWAYAT ALERGI TERTENTU SILAKAN
-              DISAMPAIKAN SEGERA
-            </p>
+
+          <div class="alert-controls">
+            <div class="alert-tabs" role="group" aria-label="Pilih peringatan">
+              <button
+                class="alert-tab is-active"
+                type="button"
+                data-alert-index="0"
+                aria-pressed="true"
+              >
+                Konsumsi
+              </button>
+              <button
+                class="alert-tab"
+                type="button"
+                data-alert-index="1"
+                aria-pressed="false"
+              >
+                Alergi
+              </button>
+            </div>
+            <button class="alert-toggle" id="alert-toggle" type="button" aria-pressed="false">
+              Jeda
+            </button>
           </div>
         </aside>
       </div>
@@ -196,6 +223,7 @@
           </div>
         </dl>
       </section>
+
     </main>
 
     <footer class="site-footer">
