@@ -26,21 +26,21 @@
     if (!list || !Array.isArray(items)) return;
 
     list.replaceChildren(
-      ...items.map((item) => {
+      ...items.map((item, index) => {
         const row = document.createElement("div");
-        const label = document.createElement("dt");
+        const number = document.createElement("dt");
         const value = document.createElement("dd");
 
         row.className = "menu-item";
-        label.textContent = item.label;
+        number.textContent = String(index + 1).padStart(2, "0");
         value.textContent = item.value;
-        row.append(label, value);
+        row.append(number, value);
         return row;
       }),
     );
   };
 
-  const renderNutrition = (items) => {
+  const renderNutritionItems = (items) => {
     const grid = document.getElementById("nutrition-grid");
     if (!grid || !Array.isArray(items)) return;
 
@@ -61,19 +61,34 @@
     );
   };
 
-  const renderTags = (id, items) => {
-    const list = document.getElementById(id);
-    if (!list || !Array.isArray(items)) return;
+  const renderNutritionGroups = (groups) => {
+    const selector = document.getElementById("portion-selector");
+    if (!selector || !Array.isArray(groups) || !groups.length) return;
 
-    const values = items.length ? items : ["Tidak dicantumkan"];
-    list.replaceChildren(
-      ...values.map((item) => {
-        const tag = document.createElement("span");
-        tag.className = "tag";
-        tag.textContent = item;
-        return tag;
-      }),
-    );
+    const buttons = groups.map((group, index) => {
+      const button = document.createElement("button");
+      button.className = `portion-button${index === 0 ? " is-active" : ""}`;
+      button.type = "button";
+      button.textContent = group.name;
+      button.setAttribute("aria-pressed", index === 0 ? "true" : "false");
+      return button;
+    });
+
+    const activateGroup = (activeIndex) => {
+      buttons.forEach((button, index) => {
+        const isActive = index === activeIndex;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+      setText("active-portion", groups[activeIndex].name);
+      renderNutritionItems(groups[activeIndex].items);
+    };
+
+    buttons.forEach((button, index) => {
+      button.addEventListener("click", () => activateGroup(index));
+    });
+    selector.replaceChildren(...buttons);
+    activateGroup(0);
   };
 
   document.title = data.page.title;
@@ -88,24 +103,14 @@
     servingDate.textContent = data.serving.date;
     servingDate.setAttribute("datetime", data.serving.machineDate);
   }
-  setText("batch-code", data.serving.batchCode);
-  setText("distribution-time", data.serving.distributionTime);
-  setText("timeline-distribution", data.serving.distributionTime);
-  setText("consume-by", data.serving.consumeBy);
-  setText("timeline-consume-by", data.serving.consumeBy);
-  setText("consumption-guidance", data.serving.consumptionGuidance);
-  setText("storage-guidance", data.serving.storageGuidance);
 
   renderMenu(data.menu);
-  setText("nutrition-note", data.nutrition.note);
-  renderNutrition(data.nutrition.items);
-  renderTags("contains-allergens", data.allergens.contains);
-  renderTags("may-contain-allergens", data.allergens.mayContain);
-  setText("allergen-note", data.allergens.note);
+  renderNutritionGroups(data.nutrition.groups);
+  setText("safe-consumption-message", data.safety.consumption);
+  setText("allergy-message", data.safety.allergy);
 
   setText("brand-name", data.sppg.name);
   setText("brand-unit", data.sppg.unit);
-  setText("short-location", data.sppg.shortLocation);
   setText("identity-title", data.sppg.name);
   setText("identity-unit", data.sppg.unit);
   setText("identity-address", data.sppg.address);

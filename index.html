@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Informasi menu, jadwal konsumsi, kandungan gizi, dan alergen SPPG."
+      content="Informasi menu dan kandungan gizi SPPG Parang Tambung Kota Makassar."
     />
-    <meta name="theme-color" content="#075c50" />
+    <meta name="theme-color" content="#012c3c" />
     <meta name="color-scheme" content="light" />
-    <title>Menu Hari Ini | SPPG Parang Tambung</title>
+    <title>Menu Hari Ini | SPPG Parang Tambung Kota Makassar</title>
 
     <link rel="stylesheet" href="style.css" />
     <script>
-      // Memuat data dengan alamat unik agar browser tidak memakai menu lama dari cache.
+      // Mengambil data terbaru setiap kali halaman dibuka agar menu lama tidak tersimpan di cache.
       document.addEventListener("DOMContentLoaded", () => {
         const version = Date.now();
         const contentScript = document.createElement("script");
@@ -38,9 +38,11 @@
     <header class="site-header">
       <div class="container topbar">
         <a class="brand" href="#konten-utama" aria-label="Kembali ke bagian utama">
-          <span class="brand-mark" aria-hidden="true">SPPG</span>
+          <span class="brand-logo-wrap">
+            <img class="brand-logo" src="BGN.png" alt="Logo Badan Gizi Nasional" />
+          </span>
           <span class="brand-copy">
-            <strong id="brand-name">SPPG Parang Tambung</strong>
+            <strong id="brand-name">SPPG Parang Tambung Kota Makassar</strong>
             <span id="brand-unit">Satuan Pelayanan Pemenuhan Gizi</span>
           </span>
         </a>
@@ -55,181 +57,134 @@
             <p class="eyebrow" id="hero-eyebrow">Informasi sajian</p>
             <h1 id="page-title">Menu Bergizi Hari Ini</h1>
             <p class="hero-intro" id="hero-intro">
-              Lihat menu, informasi gizi, alergen, dan panduan konsumsi dalam satu halaman.
+              Lihat menu, kandungan gizi tiap kelompok porsi, dan informasi konsumsi dalam satu
+              halaman.
             </p>
           </div>
 
           <div class="date-card" aria-label="Tanggal penyajian">
             <span class="date-label">Tanggal penyajian</span>
             <time id="serving-date" datetime="2026-08-24">Senin, 24 Agustus 2026</time>
-            <span class="batch-line">Kode sajian: <strong id="batch-code">MBG-2026-001</strong></span>
           </div>
         </div>
-      </section>
-
-      <section class="container quick-facts" aria-label="Ringkasan jadwal konsumsi">
-        <article class="fact-card">
-          <span class="fact-index" aria-hidden="true">01</span>
-          <div>
-            <span class="fact-label">Dibagikan</span>
-            <strong id="distribution-time">10.00 WITA</strong>
-          </div>
-        </article>
-        <article class="fact-card fact-card-accent">
-          <span class="fact-index" aria-hidden="true">02</span>
-          <div>
-            <span class="fact-label">Batas konsumsi</span>
-            <strong id="consume-by">12.00 WITA</strong>
-          </div>
-        </article>
-        <article class="fact-card">
-          <span class="fact-index" aria-hidden="true">03</span>
-          <div>
-            <span class="fact-label">Lokasi produksi</span>
-            <strong id="short-location">Parang Tambung</strong>
-          </div>
-        </article>
       </section>
 
       <div class="container content-grid">
-        <div class="primary-column">
-          <section class="panel menu-panel" aria-labelledby="menu-title">
-            <div class="section-heading">
-              <div>
-                <p class="section-kicker">Sajian lengkap</p>
-                <h2 id="menu-title">Menu Hari Ini</h2>
-              </div>
-              <span class="menu-badge">1 porsi</span>
+        <section class="panel menu-panel" aria-labelledby="menu-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Sajian lengkap</p>
+              <h2 id="menu-title">Menu Hari Ini</h2>
             </div>
+            <span class="menu-badge">Per porsi</span>
+          </div>
 
-            <dl class="menu-list" id="menu-list">
-              <div class="menu-item">
-                <dt>Makanan pokok</dt>
-                <dd>Nasi putih</dd>
-              </div>
-              <div class="menu-item">
-                <dt>Lauk utama</dt>
-                <dd>Ayam kecap</dd>
-              </div>
-              <div class="menu-item">
-                <dt>Lauk pendamping</dt>
-                <dd>Tahu kukus</dd>
-              </div>
-              <div class="menu-item">
-                <dt>Sayur</dt>
-                <dd>Tumis buncis &amp; wortel</dd>
-              </div>
-              <div class="menu-item">
-                <dt>Buah</dt>
-                <dd>Pisang ambon</dd>
-              </div>
-            </dl>
-          </section>
-
-          <section class="panel nutrition-panel" aria-labelledby="nutrition-title">
-            <div class="section-heading nutrition-heading">
-              <div>
-                <p class="section-kicker">Estimasi per porsi</p>
-                <h2 id="nutrition-title">Kandungan Gizi</h2>
-              </div>
-              <p id="nutrition-note">Nilai merupakan estimasi sajian.</p>
+          <dl class="menu-list" id="menu-list">
+            <div class="menu-item">
+              <dt>1</dt>
+              <dd>Diwan</dd>
             </div>
-
-            <div class="nutrition-grid" id="nutrition-grid">
-              <div class="nutrition-item nutrition-main">
-                <strong>610</strong>
-                <span>kkal</span>
-                <small>Energi</small>
-              </div>
-              <div class="nutrition-item">
-                <strong>26</strong>
-                <span>g</span>
-                <small>Protein</small>
-              </div>
-              <div class="nutrition-item">
-                <strong>82</strong>
-                <span>g</span>
-                <small>Karbohidrat</small>
-              </div>
-              <div class="nutrition-item">
-                <strong>19</strong>
-                <span>g</span>
-                <small>Lemak</small>
-              </div>
-              <div class="nutrition-item">
-                <strong>8</strong>
-                <span>g</span>
-                <small>Serat</small>
-              </div>
+            <div class="menu-item">
+              <dt>2</dt>
+              <dd>Dede</dd>
             </div>
-          </section>
-        </div>
-
-        <aside class="secondary-column" aria-label="Panduan konsumsi dan catatan">
-          <section class="panel timing-panel" aria-labelledby="timing-title">
-            <p class="section-kicker">Harap diperhatikan</p>
-            <h2 id="timing-title">Jadwal &amp; Batas Konsumsi</h2>
-
-            <div class="timeline" aria-label="Urutan waktu konsumsi">
-              <div class="timeline-item">
-                <span class="timeline-dot" aria-hidden="true"></span>
-                <div>
-                  <span>Makanan dibagikan</span>
-                  <strong id="timeline-distribution">10.00 WITA</strong>
-                </div>
-              </div>
-              <div class="timeline-line" aria-hidden="true"></div>
-              <div class="timeline-item timeline-item-urgent">
-                <span class="timeline-dot" aria-hidden="true"></span>
-                <div>
-                  <span>Konsumsi paling lambat</span>
-                  <strong id="timeline-consume-by">12.00 WITA</strong>
-                </div>
-              </div>
+            <div class="menu-item">
+              <dt>3</dt>
+              <dd>Kevin</dd>
             </div>
+            <div class="menu-item">
+              <dt>4</dt>
+              <dd>Challi</dd>
+            </div>
+            <div class="menu-item">
+              <dt>5</dt>
+              <dd>Heri</dd>
+            </div>
+          </dl>
+        </section>
 
-            <p class="callout" id="consumption-guidance">
-              Disarankan dikonsumsi maksimal 2 jam setelah makanan diterima.
+        <aside class="panel notice-panel" aria-label="Peringatan keamanan konsumsi">
+          <div class="notice-block notice-primary">
+            <span class="notice-number" aria-hidden="true">01</span>
+            <p id="safe-consumption-message">
+              BATAS AMAN KONSUMSI 2 JAM SETELAH MAKANAN DITERIMA
             </p>
-            <p class="fine-print" id="storage-guidance">
-              Simpan dalam keadaan tertutup. Jangan dikonsumsi jika kemasan rusak, berbau tidak
-              normal, atau melewati batas waktu.
+          </div>
+          <div class="notice-block notice-secondary">
+            <span class="notice-number" aria-hidden="true">02</span>
+            <p id="allergy-message">
+              JIKA ADA PENERIMA MANFAAT YANG MEMILIKI RIWAYAT ALERGI TERTENTU SILAKAN
+              DISAMPAIKAN SEGERA
             </p>
-          </section>
-
-          <section class="panel allergen-panel" aria-labelledby="allergen-title">
-            <p class="section-kicker">Informasi keamanan pangan</p>
-            <h2 id="allergen-title">Alergen &amp; Catatan</h2>
-
-            <div class="allergen-row">
-              <span>Mengandung</span>
-              <div class="tag-list" id="contains-allergens">
-                <span class="tag">Kedelai</span>
-              </div>
-            </div>
-            <div class="allergen-row">
-              <span>Potensi jejak</span>
-              <div class="tag-list tag-list-soft" id="may-contain-allergens">
-                <span class="tag">Telur</span>
-              </div>
-            </div>
-            <p class="allergen-note" id="allergen-note">
-              Jika memiliki alergi tertentu, konfirmasikan kepada petugas sebelum mengonsumsi.
-            </p>
-          </section>
+          </div>
         </aside>
       </div>
+
+      <section class="container panel nutrition-panel" aria-labelledby="nutrition-title">
+        <div class="section-heading nutrition-heading">
+          <div>
+            <p class="section-kicker">Informasi tiap kelompok</p>
+            <h2 id="nutrition-title">Kandungan Gizi</h2>
+          </div>
+          <span class="menu-badge">Per porsi</span>
+        </div>
+
+        <div
+          class="portion-selector"
+          id="portion-selector"
+          role="group"
+          aria-label="Pilih kelompok porsi"
+        >
+          <button class="portion-button is-active" type="button" aria-pressed="true">
+            Porsi Kecil
+          </button>
+          <button class="portion-button" type="button" aria-pressed="false">Porsi Besar</button>
+          <button class="portion-button" type="button" aria-pressed="false">Porsi Balita</button>
+          <button class="portion-button" type="button" aria-pressed="false">
+            Porsi Bumil &amp; Busui
+          </button>
+        </div>
+
+        <p class="active-portion" id="active-portion" aria-live="polite">Porsi Kecil</p>
+        <div class="nutrition-grid" id="nutrition-grid">
+          <div class="nutrition-item nutrition-main">
+            <strong>450</strong>
+            <span>kkal</span>
+            <small>Energi</small>
+          </div>
+          <div class="nutrition-item">
+            <strong>18</strong>
+            <span>g</span>
+            <small>Protein</small>
+          </div>
+          <div class="nutrition-item">
+            <strong>60</strong>
+            <span>g</span>
+            <small>Karbohidrat</small>
+          </div>
+          <div class="nutrition-item">
+            <strong>14</strong>
+            <span>g</span>
+            <small>Lemak</small>
+          </div>
+          <div class="nutrition-item">
+            <strong>6</strong>
+            <span>g</span>
+            <small>Serat</small>
+          </div>
+        </div>
+      </section>
 
       <section class="container identity-section" aria-labelledby="identity-title">
         <div class="identity-intro">
           <p class="section-kicker">Diproduksi dan didistribusikan oleh</p>
-          <h2 id="identity-title">SPPG Parang Tambung</h2>
+          <h2 id="identity-title">SPPG Parang Tambung Kota Makassar</h2>
           <p id="identity-unit">Satuan Pelayanan Pemenuhan Gizi</p>
         </div>
         <dl class="identity-details">
           <div>
             <dt>Alamat</dt>
-            <dd id="identity-address">Parang Tambung, Makassar, Sulawesi Selatan</dd>
+            <dd id="identity-address">Parang Tambung, Kota Makassar, Sulawesi Selatan</dd>
           </div>
           <div>
             <dt>Kontak</dt>
@@ -237,7 +192,7 @@
           </div>
           <div>
             <dt>Pembaruan data</dt>
-            <dd id="last-updated">23 Agustus 2026, 17.00 WITA</dd>
+            <dd id="last-updated">23 Agustus 2026, 23.00 WITA</dd>
           </div>
         </dl>
       </section>
@@ -245,7 +200,10 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p><strong id="footer-name">SPPG Parang Tambung</strong> · Informasi menu MBG</p>
+        <p>
+          <strong id="footer-name">SPPG Parang Tambung Kota Makassar</strong> · Informasi menu
+          MBG
+        </p>
         <p>Halaman ini dapat diperbarui tanpa mengganti kode QR.</p>
       </div>
     </footer>
