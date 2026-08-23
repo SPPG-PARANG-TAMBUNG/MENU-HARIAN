@@ -30,7 +30,7 @@ window.LABEL_DATA = {
   },
 
   menu: [
-    { label: "Makanan pokok", value: "Nasi putih" },
+    { label: "Makanan pokok", value: "SIRIP HIUUUU" },
     { label: "Lauk utama", value: "Ayam kecap" },
     { label: "Lauk pendamping", value: "Tahu kukus" },
     { label: "Sayur", value: "Tumis buncis & wortel" },
