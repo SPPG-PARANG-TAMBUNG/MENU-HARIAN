@@ -26,11 +26,11 @@ window.LABEL_DATA = {
 
   // Cukup ganti bagian value untuk memperbarui daftar menu.
   menu: [
-    { value: "Diwan" },
-    { value: "Dede" },
-    { value: "Kevin" },
-    { value: "Challi" },
-    { value: "Heri" },
+    { value: "Nasi Putih" },
+    { value: "Telur Ceplok Bumbu Kacang" },
+    { value: "Tempe Orak Arik" },
+    { value: "Cah Wortel + Kembang Kol" },
+    { value: "Buah Kelengkeng" },
   ],
 
   // Ganti nilai setiap kelompok sesuai perhitungan petugas/ahli gizi.
@@ -39,11 +39,11 @@ window.LABEL_DATA = {
       {
         name: "Porsi Kecil",
         items: [
-          { label: "Energi", value: "450", unit: "kkal", highlight: true },
-          { label: "Protein", value: "18", unit: "g" },
-          { label: "Karbohidrat", value: "60", unit: "g" },
-          { label: "Lemak", value: "14", unit: "g" },
-          { label: "Serat", value: "6", unit: "g" },
+          { label: "Energi", value: "531,49", unit: "kkal", highlight: true },
+          { label: "Protein", value: "19,92", unit: "g" },
+          { label: "Karbohidrat", value: "64,82", unit: "g" },
+          { label: "Lemak", value: "22,66", unit: "g" },
+          { label: "Serat", value: "1,36", unit: "g" },
         ],
       },
       {
