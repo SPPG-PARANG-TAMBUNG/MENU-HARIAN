@@ -25,12 +25,12 @@ window.LABEL_DATA = {
   },
 
   // Cukup ganti bagian value untuk memperbarui daftar menu.
+  // Jangan menekan Enter sebelum tanda kutip penutup.
   menu: [
     { value: "Nasi Putih" },
     { value: "Ayam Bakar Madu" },
     { value: "Tumis Tempe Kacang Panjang" },
-    { value: "Tumis Labu Siam + Jagung
-" },
+    { value: "Tumis Labu Siam + Jagung" },
     { value: "Buah Jeruk" },
   ],
 
