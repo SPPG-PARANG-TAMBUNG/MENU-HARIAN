@@ -26,11 +26,11 @@ window.LABEL_DATA = {
 
   // Cukup ganti bagian value untuk memperbarui daftar menu.
   menu: [
-    { value: "Nasi Putih" },
-    { value: "Telur Ceplok Bumbu Kacang" },
-    { value: "Tempe Orak Arik" },
-    { value: "Cah Wortel + Kembang Kol" },
-    { value: "Buah Kelengkeng" },
+    { value: "Diwan" },
+    { value: "Dede" },
+    { value: "Kevin" },
+    { value: "Challi" },
+    { value: "Heri" },
   ],
 
   // Ganti nilai setiap kelompok sesuai perhitungan petugas/ahli gizi.
@@ -39,11 +39,11 @@ window.LABEL_DATA = {
       {
         name: "Porsi Kecil",
         items: [
-          { label: "Energi", value: "531,49", unit: "kkal", highlight: true },
-          { label: "Protein", value: "19,92", unit: "g" },
-          { label: "Karbohidrat", value: "64,82", unit: "g" },
-          { label: "Lemak", value: "22,66", unit: "g" },
-          { label: "Serat", value: "1,36", unit: "g" },
+          { label: "Energi", value: "450", unit: "kkal", highlight: true },
+          { label: "Protein", value: "18", unit: "g" },
+          { label: "Karbohidrat", value: "60", unit: "g" },
+          { label: "Lemak", value: "14", unit: "g" },
+          { label: "Serat", value: "6", unit: "g" },
         ],
       },
       {
@@ -89,7 +89,8 @@ window.LABEL_DATA = {
     name: "SPPG Parang Tambung Kota Makassar",
     unit: "Satuan Pelayanan Pemenuhan Gizi",
     address: "Parang Tambung, Kota Makassar, Sulawesi Selatan",
-    contact: "08xx-xxxx-xxxx",
+    instagramLabel: "@sppg.parangtambung",
+    instagramUrl: "https://www.instagram.com/sppgparangtambung",
     lastUpdated: "23 Agustus 2026, 23.00 WITA",
   },
 };

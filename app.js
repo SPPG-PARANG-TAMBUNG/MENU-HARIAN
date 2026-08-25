@@ -195,7 +195,13 @@
   setText("identity-title", data.sppg.name);
   setText("identity-unit", data.sppg.unit);
   setText("identity-address", data.sppg.address);
-  setText("identity-contact", data.sppg.contact);
+  setText("instagram-handle", data.sppg.instagramLabel);
+
+  const instagramLink = document.getElementById("instagram-link");
+  if (instagramLink && data.sppg.instagramUrl) {
+    instagramLink.href = data.sppg.instagramUrl;
+  }
+
   setText("last-updated", data.sppg.lastUpdated);
   setText("footer-name", data.sppg.name);
 })();
