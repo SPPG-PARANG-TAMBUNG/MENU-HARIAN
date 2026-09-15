@@ -20,18 +20,18 @@ window.LABEL_DATA = {
 
   serving: {
     // Format machineDate harus TAHUN-BULAN-TANGGAL.
-    machineDate: "2026-09-11",
-    date: "Jumat, 11 September 2026",
+    machineDate: "2026-09-16",
+    date: "Rabu, 16 September 2026",
   },
 
   // Cukup ganti bagian value untuk memperbarui daftar menu.
   // Jangan menekan Enter sebelum tanda kutip penutup.
   menu: [
     { value: "Nasi Putih" },
-    { value: "Ayam Madu Wijen" },
-    { value: "Tahu Goreng Marinasi" },
-    { value: "Tumis Nangka Muda + Kacang Panjang" },
-    { value: "Buah Pisang Emas" },
+    { value: "Telur Ceplok Bumbu Bali" },
+    { value: "Tempe Goreng Ketumbar" },
+    { value: "Tumis Wortel + Kacang Panjang" },
+    { value: "Buah Kelengkeng" },
   ],
 
   // Ganti nilai setiap kelompok sesuai perhitungan petugas/ahli gizi.
@@ -40,41 +40,41 @@ window.LABEL_DATA = {
       {
         name: "Porsi Kecil",
         items: [
-          { label: "Energi", value: "576,90", unit: "kkal", highlight: true },
-          { label: "Protein", value: "17,38", unit: "g" },
-          { label: "Karbohidrat", value: "70,16", unit: "g" },
-          { label: "Lemak", value: "26,68", unit: "g" },
-          { label: "Serat", value: "3,07", unit: "g" },
+          { label: "Energi", value: "499,11", unit: "kkal", highlight: true },
+          { label: "Protein", value: "18,60", unit: "g" },
+          { label: "Karbohidrat", value: "62,24", unit: "g" },
+          { label: "Lemak", value: "20,40", unit: "g" },
+          { label: "Serat", value: "1,78", unit: "g" },
         ],
       },
       {
         name: "Porsi Besar",
         items: [
-          { label: "Energi", value: "664,02", unit: "kkal", highlight: true },
-          { label: "Protein", value: "20,39", unit: "g" },
-          { label: "Karbohidrat", value: "83,16", unit: "g" },
-          { label: "Lemak", value: "29,41", unit: "g" },
-          { label: "Serat", value: "3,23", unit: "g" },
+          { label: "Energi", value: "549,74", unit: "kkal", highlight: true },
+          { label: "Protein", value: "19,78", unit: "g" },
+          { label: "Karbohidrat", value: "73,39", unit: "g" },
+          { label: "Lemak", value: "20,62", unit: "g" },
+          { label: "Serat", value: "1,92", unit: "g" },
         ],
       },
       {
         name: "Porsi Balita",
         items: [
-          { label: "Energi", value: "532,27", unit: "kkal", highlight: true },
-          { label: "Protein", value: "16,33", unit: "g" },
-          { label: "Karbohidrat", value: "60,52", unit: "g" },
-          { label: "Lemak", value: "26,46", unit: "g" },
-          { label: "Serat", value: "3,04", unit: "g" },
+          { label: "Energi", value: "454,49", unit: "kkal", highlight: true },
+          { label: "Protein", value: "17,55", unit: "g" },
+          { label: "Karbohidrat", value: "52,60", unit: "g" },
+          { label: "Lemak", value: "20,18", unit: "g" },
+          { label: "Serat", value: "1,76", unit: "g" },
         ],
       },
       {
-        name: "Porsi Bumil & Busui",
+        name: "Porsi Bumil Busui",
         items: [
-          { label: "Energi", value: "792,17", unit: "kkal", highlight: true },
-          { label: "Protein", value: "26,67", unit: "g" },
-          { label: "Karbohidrat", value: "102,67", unit: "g" },
-          { label: "Lemak", value: "32,49", unit: "g" },
-          { label: "Serat", value: "3,31", unit: "g" },
+          { label: "Energi", value: "734,39", unit: "kkal", highlight: true },
+          { label: "Protein", value: "29,67", unit: "g" },
+          { label: "Karbohidrat", value: "95,84", unit: "g" },
+          { label: "Lemak", value: "26,79", unit: "g" },
+          { label: "Serat", value: "2,22", unit: "g" },
         ],
       },
     ],
@@ -92,6 +92,6 @@ window.LABEL_DATA = {
     address: "Parang Tambung, Kota Makassar, Sulawesi Selatan",
     instagramLabel: "@sppg.parangtambung",
     instagramUrl: "https://www.instagram.com/sppgparangtambung",
-    lastUpdated: "11 September 2026, 05.00 WITA",
+    lastUpdated: "16 September 2026, 01.27 WITA",
   },
 };
