@@ -20,18 +20,18 @@ window.LABEL_DATA = {
 
   serving: {
     // Format machineDate harus TAHUN-BULAN-TANGGAL.
-    machineDate: "2026-09-18",
-    date: "Jumat, 18 September 2026",
+    machineDate: "2026-09-21",
+    date: "Senin, 21 September 2026",
   },
 
   // Cukup ganti bagian value untuk memperbarui daftar menu.
   // Jangan menekan Enter sebelum tanda kutip penutup.
   menu: [
     { value: "Nasi Putih" },
-    { value: "Udang Saos Padang" },
-    { value: "Tempe Mendoan" },
-    { value: "Tumis Wortel + Sawi Putih + Jagung" },
-    { value: "Buah Pisang Emas" },
+    { value: "Telur Ceplok Saos Asam Manis" },
+    { value: "Oseng Oseng Tempe" },
+    { value: "Mix Vegetable" },
+    { value: "Buah Anggur" },
   ],
 
   // Ganti nilai setiap kelompok sesuai perhitungan petugas/ahli gizi.
@@ -40,41 +40,41 @@ window.LABEL_DATA = {
       {
         name: "Porsi Kecil",
         items: [
-          { label: "Energi", value: "509,82", unit: "kkal", highlight: true },
-          { label: "Protein", value: "23,30", unit: "g" },
-          { label: "Karbohidrat", value: "81,37", unit: "g" },
-          { label: "Lemak", value: "11,71", unit: "g" },
-          { label: "Serat", value: "1,62", unit: "g" },
+          { label: "Energi", value: "522,50", unit: "kkal", highlight: true },
+          { label: "Protein", value: "18,87", unit: "g" },
+          { label: "Karbohidrat", value: "69,35", unit: "g" },
+          { label: "Lemak", value: "20,46", unit: "g" },
+          { label: "Serat", value: "1,84", unit: "g" },
         ],
       },
       {
         name: "Porsi Besar",
         items: [
-          { label: "Energi", value: "576,24", unit: "kkal", highlight: true },
-          { label: "Protein", value: "26,59", unit: "g" },
-          { label: "Karbohidrat", value: "94,38", unit: "g" },
-          { label: "Lemak", value: "11,96", unit: "g" },
-          { label: "Serat", value: "1,78", unit: "g" },
+          { label: "Energi", value: "576,13", unit: "kkal", highlight: true },
+          { label: "Protein", value: "20,07", unit: "g" },
+          { label: "Karbohidrat", value: "81,69", unit: "g" },
+          { label: "Lemak", value: "20,71", unit: "g" },
+          { label: "Serat", value: "1,86", unit: "g" },
         ],
       },
       {
         name: "Porsi Balita",
         items: [
-          { label: "Energi", value: "465,19", unit: "kkal", highlight: true },
-          { label: "Protein", value: "22,25", unit: "g" },
-          { label: "Karbohidrat", value: "71,73", unit: "g" },
-          { label: "Lemak", value: "11,49", unit: "g" },
-          { label: "Serat", value: "1,59", unit: "g" },
+          { label: "Energi", value: "477,88", unit: "kkal", highlight: true },
+          { label: "Protein", value: "17,82", unit: "g" },
+          { label: "Karbohidrat", value: "59,71", unit: "g" },
+          { label: "Lemak", value: "20,25", unit: "g" },
+          { label: "Serat", value: "1,81", unit: "g" },
         ],
       },
       {
         name: "Porsi Bumil Busui",
         items: [
-          { label: "Energi", value: "690,14", unit: "kkal", highlight: true },
-          { label: "Protein", value: "31,82", unit: "g" },
-          { label: "Karbohidrat", value: "115,01", unit: "g" },
-          { label: "Lemak", value: "13,27", unit: "g" },
-          { label: "Serat", value: "1,97", unit: "g" },
+          { label: "Energi", value: "760,78", unit: "kkal", highlight: true },
+          { label: "Protein", value: "29,93", unit: "g" },
+          { label: "Karbohidrat", value: "104,42", unit: "g" },
+          { label: "Lemak", value: "26,89", unit: "g" },
+          { label: "Serat", value: "2,05", unit: "g" },
         ],
       },
     ],
@@ -92,6 +92,6 @@ window.LABEL_DATA = {
     address: "Parang Tambung, Kota Makassar, Sulawesi Selatan",
     instagramLabel: "@sppg.parangtambung",
     instagramUrl: "https://www.instagram.com/sppgparangtambung",
-    lastUpdated: "18 September 2026, 07.56 WITA",
+    lastUpdated: "21 September 2026, 08.22 WITA",
   },
 };
