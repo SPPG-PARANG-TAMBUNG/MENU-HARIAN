@@ -20,18 +20,18 @@ window.LABEL_DATA = {
 
   serving: {
     // Format machineDate harus TAHUN-BULAN-TANGGAL.
-    machineDate: "2026-09-30",
-    date: "Rabu, 30 September 2026",
+    machineDate: "2026-10-01",
+    date: "Kamis, 1 Oktober 2026",
   },
 
   // Cukup ganti bagian value untuk memperbarui daftar menu.
   // Jangan menekan Enter sebelum tanda kutip penutup.
   menu: [
     { value: "Nasi Putih" },
-    { value: "Telur Ceplok Bumbu Kecap" },
-    { value: "Tempe Crispy" },
-    { value: "Tumis Wortel + Kembang Kol" },
-    { value: "Buah Apel" },
+    { value: "Chicken Katsu" },
+    { value: "Tahu Goreng Gurih" },
+    { value: "Vegetable Curry" },
+    { value: "Buah Jeruk" },
   ],
 
   // Ganti nilai setiap kelompok sesuai perhitungan petugas/ahli gizi.
@@ -40,41 +40,41 @@ window.LABEL_DATA = {
       {
         name: "Porsi Kecil",
         items: [
-          { label: "Energi", value: "551,66", unit: "kkal", highlight: true },
-          { label: "Protein", value: "19,13", unit: "g" },
-          { label: "Karbohidrat", value: "73,98", unit: "g" },
-          { label: "Lemak", value: "20,76", unit: "g" },
-          { label: "Serat", value: "1,34", unit: "g" },
+          { label: "Energi", value: "568,48", unit: "kkal", highlight: true },
+          { label: "Protein", value: "23,03", unit: "g" },
+          { label: "Karbohidrat", value: "74,03", unit: "g" },
+          { label: "Lemak", value: "21,28", unit: "g" },
+          { label: "Serat", value: "1,69", unit: "g" },
         ],
       },
       {
         name: "Porsi Besar",
         items: [
-          { label: "Energi", value: "596,28", unit: "kkal", highlight: true },
-          { label: "Protein", value: "20,18", unit: "g" },
-          { label: "Karbohidrat", value: "83,62", unit: "g" },
-          { label: "Lemak", value: "20,97", unit: "g" },
-          { label: "Serat", value: "1,36", unit: "g" },
+          { label: "Energi", value: "641,60", unit: "kkal", highlight: true },
+          { label: "Protein", value: "27,22", unit: "g" },
+          { label: "Karbohidrat", value: "85,90", unit: "g" },
+          { label: "Lemak", value: "22,30", unit: "g" },
+          { label: "Serat", value: "2,00", unit: "g" },
         ],
       },
       {
         name: "Porsi Balita",
         items: [
-          { label: "Energi", value: "507,03", unit: "kkal", highlight: true },
-          { label: "Protein", value: "18,08", unit: "g" },
-          { label: "Karbohidrat", value: "64,34", unit: "g" },
-          { label: "Lemak", value: "20,54", unit: "g" },
-          { label: "Serat", value: "1,31", unit: "g" },
+          { label: "Energi", value: "523,85", unit: "kkal", highlight: true },
+          { label: "Protein", value: "21,98", unit: "g" },
+          { label: "Karbohidrat", value: "64,39", unit: "g" },
+          { label: "Lemak", value: "21,07", unit: "g" },
+          { label: "Serat", value: "1,67", unit: "g" },
         ],
       },
       {
         name: "Porsi Bumil Busui",
         items: [
-          { label: "Energi", value: "774,93", unit: "kkal", highlight: true },
-          { label: "Protein", value: "29,94", unit: "g" },
-          { label: "Karbohidrat", value: "104,56", unit: "g" },
-          { label: "Lemak", value: "27,13", unit: "g" },
-          { label: "Serat", value: "1,55", unit: "g" },
+          { label: "Energi", value: "746,85", unit: "kkal", highlight: true },
+          { label: "Protein", value: "31,50", unit: "g" },
+          { label: "Karbohidrat", value: "105,34", unit: "g" },
+          { label: "Lemak", value: "23,67", unit: "g" },
+          { label: "Serat", value: "2,06", unit: "g" },
         ],
       },
     ],
