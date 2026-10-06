@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="style.css" />
     <script>
-      // Mengambil data terbaru setiap kali halaman dibuka agar menu lama tidak tersimpan di cache.
+      // Cache-bust deploy 6 Oktober 2026: selalu mengambil content.js dan app.js terbaru.
       document.addEventListener("DOMContentLoaded", () => {
         const version = Date.now();
         const contentScript = document.createElement("script");
@@ -237,7 +237,6 @@
           </div>
         </dl>
       </section>
-
     </main>
 
     <footer class="site-footer">
