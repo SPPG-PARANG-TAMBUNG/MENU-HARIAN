@@ -92,6 +92,6 @@ window.LABEL_DATA = {
     address: "Parang Tambung, Kota Makassar, Sulawesi Selatan",
     instagramLabel: "@sppg.parangtambung",
     instagramUrl: "https://www.instagram.com/sppgparangtambung",
-    lastUpdated: "8 Oktober 2026, 09.13 WITA",
+    lastUpdated: "8 Oktober 2026, 06.13 WITA",
   },
 };
