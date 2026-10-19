@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Informasi menu harian interaktif, rincian kandungan gizi per kelompok porsi, dan panduan keamanan konsumsi Program Makan Bergizi Gratis SPPG Parang Tambung Kota Makassar."
+      content="Lihat menu harian, rincian kandungan gizi tiap kelompok porsi, dan panduan konsumsi aman Program Makan Bergizi Gratis SPPG Parang Tambung Makassar."
     />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="Menu Hari Ini — SPPG Parang Tambung Kota Makassar" />
     <meta
       property="og:description"
-      content="Informasi menu harian interaktif, rincian kandungan gizi per kelompok porsi, dan panduan keamanan konsumsi Program Makan Bergizi Gratis SPPG Parang Tambung Kota Makassar."
+      content="Lihat menu harian, rincian kandungan gizi tiap kelompok porsi, dan panduan konsumsi aman Program Makan Bergizi Gratis SPPG Parang Tambung Makassar."
+    />
+    <meta property="og:site_name" content="SPPG Parang Tambung Kota Makassar" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Menu Hari Ini — SPPG Parang Tambung Kota Makassar" />
+    <meta
+      name="twitter:description"
+      content="Lihat menu harian, rincian kandungan gizi tiap kelompok porsi, dan panduan konsumsi aman Program Makan Bergizi Gratis SPPG Parang Tambung Makassar."
     />
     <meta name="theme-color" content="#0a2147" />
-    <title>Menu Hari Ini | SPPG Parang Tambung Kota Makassar</title>
+    <title>Menu Hari Ini — SPPG Parang Tambung Kota Makassar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,6 +29,16 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script type="application/ld+json" id="schema-jsonld">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Menu Hari Ini — SPPG Parang Tambung Kota Makassar",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "All",
+        "description": "Informasi menu harian interaktif dan kandungan gizi per kelompok porsi Program Makan Bergizi Gratis SPPG Parang Tambung Kota Makassar."
+      }
+    </script>
     <script>
       // Selalu ambil content.js dan app.js terbaru agar menu harian tidak tertahan cache.
       document.addEventListener("DOMContentLoaded", () => {
@@ -39,6 +57,15 @@
   </head>
   <body>
     <a class="skip-link" href="#menu">Lewati ke menu</a>
+
+    <!-- Living Multi-Layer Interactive Background -->
+    <div class="bg-stage" aria-hidden="true">
+      <div class="aurora-orb orb-1"></div>
+      <div class="aurora-orb orb-2"></div>
+      <div class="aurora-orb orb-3"></div>
+      <div class="bg-grid-pattern"></div>
+      <canvas id="bg-canvas"></canvas>
+    </div>
 
     <header class="top">
       <div class="top-brand">
@@ -61,6 +88,10 @@
         <a href="#nutrisi">Kandungan Gizi</a>
         <a href="#identitas">Kontak SPPG</a>
       </nav>
+
+      <button type="button" class="share-btn" id="copy-menu-btn">
+        Salin Info Menu
+      </button>
     </header>
 
     <main>
@@ -140,6 +171,19 @@
             <span class="active-group-badge" id="active-group-label">Porsi Kecil</span>
           </div>
 
+          <!-- Proporsi Kalori Makronutrisi Hidup -->
+          <div class="macro-strip">
+            <div class="macro-strip-head">
+              <span>Komposisi Energi Makro</span>
+              <span id="macro-summary-text">Karbohidrat 54% · Lemak 33% · Protein 13%</span>
+            </div>
+            <div class="macro-bar-multi" role="img" aria-label="Proporsi kalori makronutrisi">
+              <div class="macro-piece piece-carb" id="piece-carb"></div>
+              <div class="macro-piece piece-fat" id="piece-fat"></div>
+              <div class="macro-piece piece-prot" id="piece-prot"></div>
+            </div>
+          </div>
+
           <dl class="rows" id="nutrition-grid"></dl>
         </div>
       </section>
@@ -177,5 +221,10 @@
         Data diperbarui: <span id="last-updated">20 Oktober 2026</span>. Halaman ini bisa diperbarui tanpa mengganti kode QR.
       </p>
     </footer>
+
+    <!-- Copy Toast -->
+    <div class="toast" id="copy-toast" role="status" aria-live="polite" hidden>
+      Ringkasan menu hari ini berhasil disalin!
+    </div>
   </body>
 </html>

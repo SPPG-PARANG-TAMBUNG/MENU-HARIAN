@@ -38,13 +38,16 @@
     setTimeout(() => ripple.remove(), 560);
   };
 
-  // Template Sekat Universal (Tetap cocok meski menu di content.js diganti setiap hari)
+  // Template Sekat Universal beserta Palet Aura Background Dinamis
   const TRAY_SLOTS = [
     {
       sourceIndex: 3, // Baris ke-4 di content.js: Sayuran
       className: "cell-top-left",
       tag: "Sayuran",
       kicker: "Sekat Kiri Atas · Sayuran & Serat",
+      aura1: "rgba(59, 135, 40, 0.25)",
+      aura2: "rgba(10, 33, 71, 0.14)",
+      aura3: "rgba(184, 137, 47, 0.18)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
       getDesc: (name) =>
         `${name} disajikan pada sekat kiri atas sebagai sumber serat pangan, vitamin, dan mineral untuk melancarkan pencernaan serta menjaga daya tahan tubuh.`,
@@ -54,6 +57,9 @@
       className: "cell-top-center",
       tag: "Buah Segar",
       kicker: "Sekat Tengah Atas · Buah & Vitamin",
+      aura1: "rgba(220, 38, 38, 0.2)",
+      aura2: "rgba(184, 137, 47, 0.22)",
+      aura3: "rgba(59, 135, 40, 0.16)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>`,
       getDesc: (name) =>
         `${name} ditempatkan pada sekat tengah atas sebagai sumber vitamin alami dan antioksidan segar untuk membantu penyerapan zat gizi secara optimal.`,
@@ -63,6 +69,9 @@
       className: "cell-top-right",
       tag: "Protein Nabati",
       kicker: "Sekat Kanan Atas · Lauk Nabati",
+      aura1: "rgba(212, 155, 39, 0.26)",
+      aura2: "rgba(59, 135, 40, 0.18)",
+      aura3: "rgba(10, 33, 71, 0.14)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>`,
       getDesc: (name) =>
         `${name} melengkapi kebutuhan protein nabati, kalsium, dan zat gizi mikro yang diolah secara higienis sesuai standar pemenuhan gizi.`,
@@ -72,6 +81,9 @@
       className: "cell-bottom-left",
       tag: "Karbohidrat",
       kicker: "Sekat Kiri Bawah · Makanan Pokok",
+      aura1: "rgba(184, 137, 47, 0.26)",
+      aura2: "rgba(10, 33, 71, 0.18)",
+      aura3: "rgba(59, 135, 40, 0.16)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a8 8 0 0 1-8 8 8 8 0 0 1-8-8Z"/><path d="M6 9c1.5-2 4-3 6-3s4.5 1 6 3"/></svg>`,
       getDesc: (name) =>
         `${name} menempati sekat kiri bawah sebagai sumber karbohidrat dan energi utama untuk menunjang konsentrasi belajar serta aktivitas harian.`,
@@ -81,6 +93,9 @@
       className: "cell-bottom-right",
       tag: "Protein Hewani",
       kicker: "Sekat Kanan Bawah · Lauk Utama",
+      aura1: "rgba(217, 119, 6, 0.24)",
+      aura2: "rgba(10, 33, 71, 0.2)",
+      aura3: "rgba(59, 135, 40, 0.2)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M5 17a7 7 0 0 1 14 0"/><path d="M12 7v3"/><circle cx="12" cy="6" r="1"/></svg>`,
       getDesc: (name) =>
         `${name} disajikan pada sekat utama kanan bawah sebagai sumber protein hewani dan asam amino esensial untuk pertumbuhan serta daya tahan tubuh.`,
@@ -98,7 +113,8 @@
 
   let currentEnergy = 0;
   const previousRowValues = {};
-  let activeSlotIndex = 3; // Default sorot Makanan Pokok (Kiri Bawah)
+  let activeSlotIndex = 3;
+  let activeGroupIndex = 0;
 
   const animateValue = (el, fromVal, toVal, unitSuffix = "", duration = 420) => {
     if (!el) return;
@@ -140,6 +156,11 @@
         li.classList.toggle("is-active", i === idx);
         if (i === idx && evt) spawnRipple(li, evt);
       });
+
+      // Shift Background Aurora Colors to match the selected compartment
+      document.documentElement.style.setProperty("--aura-1", chosen.aura1);
+      document.documentElement.style.setProperty("--aura-2", chosen.aura2);
+      document.documentElement.style.setProperty("--aura-3", chosen.aura3);
 
       const detailCard = $("cell-detail");
       if (detailCard) {
@@ -211,6 +232,109 @@
     });
   };
 
+  // Interactive 60fps Floating Nutrition Particles Background Canvas
+  const initLivingBackground = () => {
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+        document.documentElement.style.setProperty("--cursor-x", `${e.clientX}px`);
+        document.documentElement.style.setProperty("--cursor-y", `${e.clientY}px`);
+      },
+      { passive: true }
+    );
+
+    const canvas = $("bg-canvas");
+    if (!canvas) return;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener(
+      "resize",
+      () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      },
+      { passive: true }
+    );
+
+    const pointer = { x: -9999, y: -9999 };
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+      },
+      { passive: true }
+    );
+    window.addEventListener(
+      "pointerleave",
+      () => {
+        pointer.x = -9999;
+        pointer.y = -9999;
+      },
+      { passive: true }
+    );
+
+    const colors = [
+      "rgba(184, 137, 47, 0.26)",
+      "rgba(10, 33, 71, 0.16)",
+      "rgba(59, 135, 40, 0.22)",
+    ];
+
+    const count = Math.min(Math.max(Math.floor(width / 38), 18), 36);
+    const particles = Array.from({ length: count }, (_, i) => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: 2 + Math.random() * 4.5,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: -0.18 - Math.random() * 0.35,
+      color: colors[i % colors.length],
+      phase: Math.random() * Math.PI * 2,
+    }));
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.phase += 0.015;
+        p.x += p.vx + Math.sin(p.phase) * 0.18;
+        p.y += p.vy;
+
+        // Gentle interactive repulsion from pointer
+        const dx = p.x - pointer.x;
+        const dy = p.y - pointer.y;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < 16000 && distSq > 1) {
+          const dist = Math.sqrt(distSq);
+          const force = (126 - dist) / 126;
+          p.x += (dx / dist) * force * 1.6;
+          p.y += (dy / dist) * force * 1.6;
+        }
+
+        if (p.y < -20) {
+          p.y = height + 20;
+          p.x = Math.random() * width;
+        }
+        if (p.x < -20) p.x = width + 20;
+        if (p.x > width + 20) p.x = -20;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    };
+
+    requestAnimationFrame(draw);
+  };
+
   const renderGroup = (group) => {
     const main = group.items.find((x) => x.highlight) || group.items[0];
     const rest = group.items.filter((x) => x !== main);
@@ -233,6 +357,28 @@
       currentEnergy = nextVal;
       s.textContent = `${main.unit} ${main.label.toLowerCase()}`;
     }
+
+    // Update Segmented Macro Caloric Bar
+    const protItem = rest.find((x) => x.label.toLowerCase().includes("protein"));
+    const carbItem = rest.find((x) => x.label.toLowerCase().includes("karbo"));
+    const fatItem = rest.find((x) => x.label.toLowerCase().includes("lemak"));
+
+    const protCal = (protItem ? parseIdNum(protItem.value) : 0) * 4;
+    const carbCal = (carbItem ? parseIdNum(carbItem.value) : 0) * 4;
+    const fatCal = (fatItem ? parseIdNum(fatItem.value) : 0) * 9;
+    const totalCal = protCal + carbCal + fatCal || 1;
+
+    const cPct = Math.round((carbCal / totalCal) * 100);
+    const fPct = Math.round((fatCal / totalCal) * 100);
+    const pPct = Math.max(0, 100 - cPct - fPct);
+
+    const pCarb = $("piece-carb");
+    const pFat = $("piece-fat");
+    const pProt = $("piece-prot");
+    if (pCarb) pCarb.style.flexGrow = String(cPct);
+    if (pFat) pFat.style.flexGrow = String(fPct);
+    if (pProt) pProt.style.flexGrow = String(pPct);
+    setText("macro-summary-text", `Karbohidrat ${cPct}% · Lemak ${fPct}% · Protein ${pPct}%`);
 
     const grid = $("nutrition-grid");
     if (grid) {
@@ -264,7 +410,6 @@
 
         row.append(line, bar);
 
-        // Animate both the number and the bar fill smoothly
         animateValue(dd, prevVal, val, x.unit, 420);
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
@@ -294,6 +439,7 @@
       return b;
     });
     const select = (idx) => {
+      activeGroupIndex = idx;
       buttons.forEach((b, i) => b.setAttribute("aria-pressed", String(i === idx)));
       renderGroup(groups[idx]);
     };
@@ -301,9 +447,78 @@
     select(0);
   };
 
+  // Share / Copy Menu Summary Action
+  const initCopyMenu = () => {
+    const btn = $("copy-menu-btn");
+    const toast = $("copy-toast");
+    if (!btn) return;
+
+    btn.addEventListener("click", async () => {
+      const menuLines = (data.menu || []).map((m, i) => `${i + 1}. ${m.value}`).join("\n");
+      const g =
+        data.nutrition &&
+        data.nutrition.groups &&
+        (data.nutrition.groups[activeGroupIndex] || data.nutrition.groups[0]);
+      const nutriLines = g
+        ? g.items.map((it) => `- ${it.label}: ${it.value} ${it.unit}`).join("\n")
+        : "";
+
+      const text = [
+        `*${data.sppg.name}*`,
+        `${data.page.programName} — ${data.serving.date}`,
+        "",
+        `*Isi Ompreng Hari Ini:*`,
+        menuLines,
+        "",
+        `*Kandungan Gizi (${g ? g.name : "Per Porsi"}):*`,
+        nutriLines,
+        "",
+        `⚠️ ${data.safety.consumption}`,
+      ].join("\n");
+
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+
+      if (toast) {
+        toast.hidden = false;
+        setTimeout(() => {
+          toast.hidden = true;
+        }, 2500);
+      }
+    });
+  };
+
+  // Update SEO & Structured Data (Schema.org JSON-LD)
   document.title = data.page.title;
   const meta = document.querySelector('meta[name="description"]');
   if (meta && data.page.description) meta.setAttribute("content", data.page.description);
+
+  const schemaEl = $("schema-jsonld");
+  if (schemaEl) {
+    schemaEl.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Menu",
+      name: `${data.page.heading} — ${data.serving.date}`,
+      description: data.page.description,
+      provider: {
+        "@type": "GovernmentOrganization",
+        name: data.sppg.name,
+        address: data.sppg.address,
+      },
+      hasMenuItem: (data.menu || []).map((m) => ({
+        "@type": "MenuItem",
+        name: m.value,
+      })),
+    });
+  }
 
   setText("program-name", data.page.programName);
   setText("page-title", data.page.heading);
@@ -316,6 +531,8 @@
 
   renderMenu(data.menu);
   initTrayTilt();
+  initLivingBackground();
+  initCopyMenu();
   renderGroups(data.nutrition.groups);
   setText("safe-consumption-message", data.safety.consumption);
   setText("allergy-message", data.safety.allergy);
