@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Informasi menu dan kandungan gizi SPPG Parang Tambung Kota Makassar." />
     <meta name="theme-color" content="#0a2147" />
+    <meta property="og:title" content="Menu Hari Ini | SPPG Parang Tambung" />
+    <meta property="og:description" content="Menu, kandungan gizi, dan batas aman konsumsi hari ini." />
+    <link rel="icon" href="BGN.png" />
     <title>Menu Hari Ini | SPPG Parang Tambung Kota Makassar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,7 +44,7 @@
 
     <main>
       <div class="stage">
-        <div class="wrap">
+        <div class="wrap stage-grid">
           <section class="safety" aria-label="Peringatan penting">
             <svg class="clock" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
               <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.4" />
@@ -62,12 +65,27 @@
           <section id="menu" class="tray-wrap" aria-labelledby="menu-title">
             <h2 id="menu-title">Isi ompreng hari ini</h2>
             <ul class="tray" id="menu-list" data-count="5">
-              <li class="cell">Nasi Putih</li>
-              <li class="cell">Telur Ceplok Balado</li>
-              <li class="cell">Tempe Crispy Daun Jeruk</li>
-              <li class="cell">Tumis Sawi Hijau Jagung Wortel</li>
-              <li class="cell">Buah Apel</li>
+              <li class="cell"><button class="cell-in" type="button">Nasi Putih</button></li>
+              <li class="cell"><button class="cell-in" type="button">Telur Ceplok Balado</button></li>
+              <li class="cell"><button class="cell-in" type="button">Tempe Crispy Daun Jeruk</button></li>
+              <li class="cell"><button class="cell-in" type="button">Tumis Sawi Hijau Jagung Wortel</button></li>
+              <li class="cell"><button class="cell-in" type="button">Buah Apel</button></li>
             </ul>
+            <p class="hint" id="tray-hint">Sentuh sebuah sekat untuk melihat kelompok pangannya.</p>
+          </section>
+
+          <section class="timer" id="timer" data-state="idle" aria-labelledby="timer-title">
+            <h2 id="timer-title">Hitung batas konsumsi</h2>
+            <p class="timer-help">Tekan saat makanan diterima. Hitungan tetap berjalan walau halaman ditutup.</p>
+            <div class="dial" role="timer" aria-label="Sisa waktu konsumsi aman">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="track" cx="60" cy="60" r="52" />
+                <circle class="arc" id="timer-arc" cx="60" cy="60" r="52" />
+              </svg>
+              <div class="t"><b id="timer-time">2:00:00</b><span id="timer-status">Belum dihitung</span></div>
+            </div>
+            <button class="btn" id="timer-start" type="button">Mulai hitung 2 jam</button>
+            <p class="sr" id="timer-live" aria-live="polite"></p>
           </section>
         </div>
       </div>
@@ -75,10 +93,13 @@
       <div class="light">
         <section class="wrap nutri" aria-labelledby="nutrition-title">
           <h2 id="nutrition-title">Kandungan gizi per porsi</h2>
-          <div class="tabs" id="portion-selector" role="group" aria-label="Pilih kelompok porsi"></div>
-          <div class="nutri-body" aria-live="polite">
-            <div class="energy" id="nutrition-energy"></div>
-            <dl class="rows" id="nutrition-grid"></dl>
+          <div class="nutri-layout">
+            <div class="tabs" id="portion-selector" role="group" aria-label="Pilih kelompok porsi"></div>
+            <div class="nutri-body" aria-live="polite">
+              <div class="energy" id="nutrition-energy"><b id="energy-num">0</b><span id="energy-unit">kkal energi</span></div>
+              <dl class="rows" id="nutrition-grid"></dl>
+              <p class="note">Batang membandingkan dengan porsi terbesar untuk zat yang sama.</p>
+            </div>
           </div>
         </section>
       </div>
