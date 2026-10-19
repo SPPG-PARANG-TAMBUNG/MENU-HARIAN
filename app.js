@@ -1,207 +1,77 @@
 (() => {
   "use strict";
-
   const data = window.LABEL_DATA;
-  if (!data) {
-    console.warn("LABEL_DATA tidak ditemukan. Konten contoh dari index.html tetap ditampilkan.");
-    return;
-  }
+  if (!data) return console.warn("LABEL_DATA tidak ditemukan. Konten contoh dari index.html tetap ditampilkan.");
 
-  const setText = (id, value) => {
-    const element = document.getElementById(id);
-    if (element && value !== undefined && value !== null) {
-      element.textContent = String(value);
-    }
-  };
-
-  const setMeta = (name, content) => {
-    const element = document.querySelector(`meta[name="${name}"]`);
-    if (element && content) {
-      element.setAttribute("content", content);
-    }
+  const $ = (id) => document.getElementById(id);
+  const setText = (id, v) => { const el = $(id); if (el && v != null) el.textContent = String(v); };
+  const el = (tag, cls, text) => {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
   };
 
   const renderMenu = (items) => {
-    const list = document.getElementById("menu-list");
+    const list = $("menu-list");
     if (!list || !Array.isArray(items)) return;
-
-    list.replaceChildren(
-      ...items.map((item, index) => {
-        const itemElement = document.createElement("li");
-        itemElement.className = "menu-item";
-        itemElement.textContent = item.value;
-        itemElement.style.setProperty("--item-index", index);
-        return itemElement;
-      }),
-    );
+    list.replaceChildren(...items.map((it, i) => {
+      const li = el("li", "cell", it.value);
+      li.style.setProperty("--i", i);
+      return li;
+    }));
   };
 
-  const renderNutritionItems = (items) => {
-    const grid = document.getElementById("nutrition-grid");
-    if (!grid || !Array.isArray(items)) return;
-
-    grid.replaceChildren(
-      ...items.map((item, index) => {
-        const card = document.createElement("div");
-        const value = document.createElement("strong");
-        const unit = document.createElement("span");
-        const label = document.createElement("small");
-
-        card.className = `nutrition-item${item.highlight ? " nutrition-main" : ""}`;
-        card.style.setProperty("--item-index", index);
-        value.textContent = item.value;
-        unit.textContent = item.unit;
-        label.textContent = item.label;
-        card.append(value, unit, label);
-        return card;
-      }),
-    );
+  const renderGroup = (group) => {
+    const main = group.items.find((x) => x.highlight) || group.items[0];
+    const rest = group.items.filter((x) => x !== main);
+    const energy = $("nutrition-energy");
+    energy.replaceChildren(el("b", "", main.value), el("span", "", `${main.unit} ${main.label.toLowerCase()}`));
+    $("nutrition-grid").replaceChildren(...rest.map((x) => {
+      const row = el("div");
+      row.append(el("dt", "", x.label), el("dd", "", `${x.value} ${x.unit}`));
+      return row;
+    }));
   };
 
-  const renderNutritionGroups = (groups) => {
-    const selector = document.getElementById("portion-selector");
-    if (!selector || !Array.isArray(groups) || !groups.length) return;
-
-    const buttons = groups.map((group, index) => {
-      const button = document.createElement("button");
-      button.className = `portion-button${index === 0 ? " is-active" : ""}`;
-      button.type = "button";
-      button.textContent = group.name;
-      button.setAttribute("aria-pressed", index === 0 ? "true" : "false");
-      return button;
+  const renderGroups = (groups) => {
+    const box = $("portion-selector");
+    if (!box || !Array.isArray(groups) || !groups.length) return;
+    const buttons = groups.map((g, i) => {
+      const b = el("button", "tab", g.name);
+      b.type = "button";
+      b.addEventListener("click", () => select(i));
+      return b;
     });
-
-    const activateGroup = (activeIndex) => {
-      buttons.forEach((button, index) => {
-        const isActive = index === activeIndex;
-        button.classList.toggle("is-active", isActive);
-        button.setAttribute("aria-pressed", isActive ? "true" : "false");
-      });
-      setText("active-portion", groups[activeIndex].name);
-      renderNutritionItems(groups[activeIndex].items);
+    const select = (idx) => {
+      buttons.forEach((b, i) => b.setAttribute("aria-pressed", String(i === idx)));
+      renderGroup(groups[idx]);
     };
-
-    buttons.forEach((button, index) => {
-      button.addEventListener("click", () => activateGroup(index));
-    });
-    selector.replaceChildren(...buttons);
-    activateGroup(0);
-  };
-
-  const initAlertSlider = () => {
-    const slider = document.getElementById("alert-slider");
-    const track = document.getElementById("alert-track");
-    const slides = Array.from(document.querySelectorAll(".alert-slide"));
-    const tabs = Array.from(document.querySelectorAll(".alert-tab"));
-    const toggle = document.getElementById("alert-toggle");
-
-    if (!slider || !track || slides.length < 2 || !toggle) return;
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let activeIndex = 0;
-    let timer = null;
-    let isPaused = prefersReducedMotion;
-
-    const render = () => {
-      track.style.transform = `translateX(-${activeIndex * 100}%)`;
-
-      slides.forEach((slide, index) => {
-        const isActive = index === activeIndex;
-        slide.classList.toggle("is-active", isActive);
-        slide.setAttribute("aria-hidden", isActive ? "false" : "true");
-      });
-
-      tabs.forEach((tab, index) => {
-        const isActive = index === activeIndex;
-        tab.classList.toggle("is-active", isActive);
-        tab.setAttribute("aria-pressed", isActive ? "true" : "false");
-      });
-    };
-
-    const stop = () => {
-      if (timer) {
-        window.clearInterval(timer);
-        timer = null;
-      }
-    };
-
-    const start = () => {
-      stop();
-      if (isPaused || document.hidden) return;
-      timer = window.setInterval(() => {
-        activeIndex = (activeIndex + 1) % slides.length;
-        render();
-      }, 5000);
-    };
-
-    const goTo = (index) => {
-      activeIndex = (index + slides.length) % slides.length;
-      render();
-      start();
-    };
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => goTo(Number(tab.dataset.alertIndex)));
-    });
-
-    toggle.addEventListener("click", () => {
-      isPaused = !isPaused;
-      toggle.textContent = isPaused ? "Putar" : "Jeda";
-      toggle.setAttribute("aria-pressed", isPaused ? "true" : "false");
-      isPaused ? stop() : start();
-    });
-
-    slider.addEventListener("mouseenter", stop);
-    slider.addEventListener("mouseleave", start);
-    slider.addEventListener("focusin", stop);
-    slider.addEventListener("focusout", (event) => {
-      if (!slider.contains(event.relatedTarget)) start();
-    });
-
-    document.addEventListener("visibilitychange", () => {
-      document.hidden ? stop() : start();
-    });
-
-    if (prefersReducedMotion) {
-      toggle.textContent = "Putar";
-      toggle.setAttribute("aria-pressed", "true");
-    }
-
-    render();
-    start();
+    box.replaceChildren(...buttons);
+    select(0);
   };
 
   document.title = data.page.title;
-  setMeta("description", data.page.description);
+  const meta = document.querySelector('meta[name="description"]');
+  if (meta && data.page.description) meta.setAttribute("content", data.page.description);
+
   setText("program-name", data.page.programName);
-  setText("hero-eyebrow", data.page.eyebrow);
   setText("page-title", data.page.heading);
   setText("hero-intro", data.page.intro);
-
-  const servingDate = document.getElementById("serving-date");
-  if (servingDate) {
-    servingDate.textContent = data.serving.date;
-    servingDate.setAttribute("datetime", data.serving.machineDate);
-  }
+  const date = $("serving-date");
+  if (date) { date.textContent = data.serving.date; date.setAttribute("datetime", data.serving.machineDate); }
 
   renderMenu(data.menu);
-  renderNutritionGroups(data.nutrition.groups);
+  renderGroups(data.nutrition.groups);
   setText("safe-consumption-message", data.safety.consumption);
   setText("allergy-message", data.safety.allergy);
-  initAlertSlider();
 
   setText("brand-name", data.sppg.name);
-  setText("brand-unit", data.sppg.unit);
   setText("identity-title", data.sppg.name);
   setText("identity-unit", data.sppg.unit);
   setText("identity-address", data.sppg.address);
   setText("instagram-handle", data.sppg.instagramLabel);
-
-  const instagramLink = document.getElementById("instagram-link");
-  if (instagramLink && data.sppg.instagramUrl) {
-    instagramLink.href = data.sppg.instagramUrl;
-  }
-
+  const ig = $("instagram-link");
+  if (ig && data.sppg.instagramUrl) ig.href = data.sppg.instagramUrl;
   setText("last-updated", data.sppg.lastUpdated);
-  setText("footer-name", data.sppg.name);
 })();

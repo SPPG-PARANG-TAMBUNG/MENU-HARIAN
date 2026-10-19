@@ -81,9 +81,9 @@ window.LABEL_DATA = {
   },
 
   safety: {
-    consumption: "BATAS AMAN KONSUMSI 2 JAM SETELAH MAKANAN DITERIMA",
+    consumption: "Batas aman konsumsi 2 jam setelah makanan diterima.",
     allergy:
-      "JIKA ADA PENERIMA MANFAAT YANG MEMILIKI RIWAYAT ALERGI TERTENTU SILAKAN DISAMPAIKAN SEGERA",
+      "Jika ada penerima manfaat yang memiliki riwayat alergi tertentu, silakan sampaikan segera.",
   },
 
   sppg: {
