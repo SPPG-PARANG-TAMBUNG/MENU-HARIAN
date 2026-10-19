@@ -25,6 +25,8 @@ window.LABEL_DATA = {
   },
 
   // Cukup ganti bagian value untuk memperbarui daftar menu.
+  // Tata letak ompreng paling pas untuk 5 menu dengan urutan:
+  // 1 nasi, 2 lauk hewani, 3 lauk nabati, 4 sayur, 5 buah.
   // Jangan menekan Enter sebelum tanda kutip penutup.
   menu: [
     { value: "Nasi Putih" },

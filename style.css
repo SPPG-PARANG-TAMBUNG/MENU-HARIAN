@@ -1,105 +1,120 @@
 :root {
   --navy: #0a2147;
   --navy-soft: #3d5278;
-  --gold: #b8892f;
-  --gold-pale: #f3e6c8;
-  --leaf: #4f9a2f;
-  --sky: #e6f2f6;
-  --steel: #cfd8de;
-  --steel-dark: #aab6bf;
-  --paper: #f7fafb;
-  --alert: #a8231b;
-  --alert-bg: #fdecea;
+  --on-navy: #c4d0e6;
+  --gold: #f2c56b;
+  --paper: #f1f5f7;
+  --line: #cfd8de;
+  --alert: #b3261e;
   --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 * { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--navy);
-  font: 400 1rem/1.55 var(--body);
-  -webkit-font-smoothing: antialiased;
-}
+body { margin: 0; background: var(--paper); color: var(--navy); font: 400 1rem/1.55 var(--body); -webkit-font-smoothing: antialiased; }
 h1, h2, p, ul, dl, dd { margin: 0; }
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-
-.skip-link { position: fixed; top: 8px; left: 8px; z-index: 10; padding: 8px 12px; background: #fff; border-radius: 6px; transform: translateY(-200%); }
+.light :focus-visible { outline-color: var(--navy); }
+.wrap { width: min(100% - 32px, 640px); margin-inline: auto; }
+.skip-link { position: fixed; top: 8px; left: 8px; z-index: 10; padding: 8px 12px; background: #fff; color: var(--navy); border-radius: 6px; transform: translateY(-200%); }
 .skip-link:focus { transform: none; }
 
-main, .top, .foot { width: min(100% - 32px, 640px); margin-inline: auto; }
-
+.bar, .stage, .foot-bg { background: var(--navy); color: #fff; }
 .top { display: flex; align-items: center; gap: 12px; padding: 14px 0; }
 .logo { flex: none; border-radius: 50%; }
 .who { display: grid; line-height: 1.25; }
 .who strong { font: 700 0.95rem var(--display); }
-.who span { font-size: 0.8rem; color: var(--navy-soft); }
+.who span { font-size: 0.8rem; color: var(--on-navy); }
 
-/* Peringatan: selalu tampil, tidak berputar */
-.safety { background: var(--alert-bg); border-left: 6px solid var(--alert); padding: 14px 16px; border-radius: 4px; }
-.safety-main { font: 800 1.2rem/1.25 var(--display); color: var(--alert); }
-.safety-sub { margin-top: 6px; font-size: 0.9rem; color: #5a1a15; }
+.stage { padding: 6px 0 44px; }
+.safety { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; background: #ffe9e5; color: #7d140d; border-left: 6px solid #d4281c; border-radius: 6px; }
+.clock { flex: none; margin-top: 2px; color: var(--alert); }
+.safety-main { font: 800 1.15rem/1.25 var(--display); color: var(--alert); }
+.safety-sub { margin-top: 6px; font-size: 0.9rem; }
 
-.today { padding: 36px 0 8px; }
-h1 { font: 800 clamp(2.4rem, 11vw, 3.6rem)/0.98 var(--display); letter-spacing: -0.03em; text-wrap: balance; }
-.today time { display: block; margin-top: 12px; font: 600 1.15rem var(--display); color: var(--gold); }
-.today p { margin-top: 10px; max-width: 46ch; color: var(--navy-soft); }
-
+.today { padding: 34px 0 6px; }
+h1 { font: 800 clamp(2.3rem, 10.5vw, 3.5rem)/1 var(--display); letter-spacing: -0.03em; text-wrap: balance; }
+.today time { display: block; margin-top: 12px; font: 700 1.3rem var(--display); color: var(--gold); }
+.today p { margin-top: 10px; max-width: 46ch; color: var(--on-navy); }
 h2 { font: 700 1.2rem var(--display); margin-bottom: 14px; }
+.tray-wrap { padding-top: 30px; }
 
-/* Ompreng: nampan stainless bersekat. Elemen yang diingat. */
-.tray-wrap { padding-top: 32px; }
+/* Ompreng baja 5 sekat. Urutan menu: 1 nasi, 2 lauk hewani, 3 lauk nabati, 4 sayur, 5 buah. */
 .tray {
-  list-style: none; padding: 10px; display: grid; gap: 10px;
-  grid-template-columns: 1fr 1fr;
-  background: linear-gradient(160deg, #e3e9ed, var(--steel));
-  border: 2px solid var(--steel-dark);
-  border-radius: 28px 28px 22px 22px;
+  list-style: none; position: relative; padding: 14px; display: grid; gap: 10px;
+  height: min(560px, 135vw);
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, transparent 1px 3px),
+    linear-gradient(135deg, #e6ebee 0%, #a9b5be 38%, #d3dbe0 66%, #98a5b0 100%);
+  border-radius: 26px;
+  box-shadow: 0 0 0 3px #66747f, 0 22px 44px rgba(0,0,0,.5), inset 0 2px 0 rgba(255,255,255,.85), inset 0 -4px 8px rgba(10,33,71,.28);
 }
 .cell {
-  min-height: 92px; padding: 14px; display: flex; align-items: flex-end;
-  background: #fff; border-radius: 16px 16px 12px 12px;
-  box-shadow: inset 0 3px 6px rgba(10, 33, 71, 0.13);
-  font: 700 1.05rem/1.2 var(--display);
+  position: relative; z-index: 1; overflow: hidden; padding: 14px 18px; display: flex; align-items: flex-end;
+  font: 700 0.98rem/1.2 var(--display); overflow-wrap: break-word; text-shadow: 0 1px 0 rgba(255,255,255,.7);
+  background: linear-gradient(145deg, #a3afb9 0%, #d3dbe1 50%, #e8edf0 100%);
+  border: 2px solid #8794a0; border-radius: 26px;
+  box-shadow: inset 5px 6px 12px rgba(10,33,71,.38), inset -3px -4px 8px rgba(255,255,255,.75);
 }
-.cell:first-child { grid-column: 1 / -1; min-height: 120px; font-size: 1.35rem; border-bottom: 5px solid var(--gold); }
-.cell:last-child:nth-child(even) { grid-column: 1 / -1; }
-.cell:last-child:not(:first-child) { border-bottom: 5px solid var(--leaf); }
+.cell::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .4; background: radial-gradient(circle at 68% 34%, var(--food, transparent) 0, transparent 62%); }
+.cell:nth-child(1) { --food: #ffffff; justify-content: center; align-items: center; text-align: center; font-size: 1.2rem; border-radius: 64px; }
+.cell:nth-child(2) { --food: #d9953e; }
+.cell:nth-child(3) { --food: #eac33a; }
+.cell:nth-child(4) { --food: #6fb83f; border-radius: 38px; }
+.cell:nth-child(5) { --food: #e0485f; }
 
-.nutri { padding: 40px 0 8px; }
+/* HP: kolom kiri nasi + lauk besar, kolom kanan sayur, buah, lauk nabati */
+.tray[data-count="5"] { grid-template-columns: 11fr 9fr; grid-template-rows: repeat(6, 1fr); }
+.tray[data-count="5"] .cell:nth-child(1) { grid-area: 1 / 1 / 4 / 2; }
+.tray[data-count="5"] .cell:nth-child(2) { grid-area: 4 / 1 / 7 / 2; }
+.tray[data-count="5"] .cell:nth-child(3) { grid-area: 5 / 2 / 7 / 3; }
+.tray[data-count="5"] .cell:nth-child(4) { grid-area: 1 / 2 / 3 / 3; }
+.tray[data-count="5"] .cell:nth-child(5) { grid-area: 3 / 2 / 5 / 3; }
+
+/* Jumlah menu selain 5: sekat disusun otomatis */
+.tray:not([data-count="5"]) { height: auto; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); grid-auto-rows: minmax(110px, auto); }
+
+.light { padding: 40px 0 12px; }
 .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-.tab {
-  min-height: 44px; padding: 8px 16px; border: 2px solid var(--navy); border-radius: 999px;
-  background: transparent; color: var(--navy); font: 600 0.92rem var(--body); cursor: pointer;
-}
+.tab { min-height: 44px; padding: 8px 16px; border: 2px solid var(--navy); border-radius: 999px; background: transparent; color: var(--navy); font: 600 0.92rem var(--body); cursor: pointer; }
 .tab[aria-pressed="true"] { background: var(--navy); color: #fff; }
-
-.nutri-body { background: #fff; border: 1px solid var(--steel); border-radius: 18px; padding: 20px; }
-.energy { display: flex; align-items: baseline; gap: 8px; padding-bottom: 14px; border-bottom: 3px solid var(--gold-pale); }
+.nutri-body { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+.energy { display: flex; align-items: baseline; gap: 8px; padding-bottom: 14px; border-bottom: 3px solid var(--navy); }
 .energy b { font: 800 3.6rem/1 var(--display); letter-spacing: -0.03em; }
 .energy span { font-weight: 600; color: var(--navy-soft); }
-.rows > div { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--sky); }
+.rows > div { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #e3ebef; }
 .rows > div:last-child { border-bottom: 0; padding-bottom: 0; }
 .rows dt { color: var(--navy-soft); }
 .rows dd { font-weight: 600; font-variant-numeric: tabular-nums; }
 
-.foot { margin-top: 48px; padding: 28px 0 40px; border-top: 2px solid var(--navy); display: grid; gap: 4px; }
+.foot-bg { margin-top: 44px; }
+.foot { padding: 30px 0 42px; display: grid; gap: 4px; }
 .foot h2 { font-size: 1.05rem; margin-bottom: 0; }
-.foot p { color: var(--navy-soft); font-size: 0.92rem; }
+.foot p { color: var(--on-navy); font-size: 0.92rem; }
 .ig { display: inline-flex; align-items: center; gap: 10px; width: fit-content; min-height: 44px; margin-top: 6px; font-weight: 600; text-decoration: none; }
 .ig img { border-radius: 6px; }
 .ig:hover span { text-decoration: underline; }
 .foot .small { margin-top: 10px; font-size: 0.8rem; }
 
-/* Satu momen masuk: sekat ompreng terisi satu per satu. */
 @media (prefers-reduced-motion: no-preference) {
   .cell { animation: fill 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 90ms); }
   @keyframes fill { from { opacity: 0; transform: scale(0.92); } }
 }
+
+/* Layar lebar: tata letak persis seperti ompreng asli (3 sekat atas, 2 sekat bawah) */
 @media (min-width: 700px) {
-  main { width: min(100% - 64px, 760px); }
-  .tray { grid-template-columns: repeat(3, 1fr); }
-  .cell:last-child:nth-child(even) { grid-column: auto; }
-  .cell:first-child { grid-column: span 2; }
+  .wrap { width: min(100% - 64px, 760px); }
+  .tray { height: auto; aspect-ratio: 1342 / 1000; gap: 14px; padding: 18px; border-radius: 30px; }
+  .cell { font-size: 1.1rem; padding: 18px 22px; }
+  .cell:nth-child(1) { border-radius: 46%; font-size: 1.4rem; }
+  .cell:nth-child(2) { border-radius: 34px; }
+  .cell:nth-child(4) { border-radius: 44px; }
+  .cell:nth-child(5) { border-radius: 40px; }
+  .tray[data-count="5"] { grid-template-columns: repeat(18, 1fr); grid-template-rows: 42fr 58fr; }
+  .tray[data-count="5"] .cell:nth-child(1) { grid-area: 2 / 1 / 3 / 8; }
+  .tray[data-count="5"] .cell:nth-child(2) { grid-area: 2 / 8 / 3 / 19; }
+  .tray[data-count="5"] .cell:nth-child(3) { grid-area: 1 / 14 / 2 / 19; }
+  .tray[data-count="5"] .cell:nth-child(4) { grid-area: 1 / 1 / 2 / 6; }
+  .tray[data-count="5"] .cell:nth-child(5) { grid-area: 1 / 6 / 2 / 14; }
+  .tray[data-count="5"]::after { content: "SUS304"; position: absolute; z-index: 0; left: 30%; top: 42%; font: 600 9px/1 var(--body); letter-spacing: .14em; color: rgba(10,33,71,.4); text-shadow: 0 1px 0 rgba(255,255,255,.6); }
 }

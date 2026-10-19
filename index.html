@@ -29,56 +29,72 @@
   <body>
     <a class="skip-link" href="#menu">Lewati ke menu</a>
 
-    <header class="top">
-      <img class="logo" src="BGN.png" alt="Logo Badan Gizi Nasional" width="44" height="44" />
-      <div class="who">
-        <strong id="brand-name">SPPG Parang Tambung Kota Makassar</strong>
-        <span id="program-name">Program Makan Bergizi Gratis</span>
+    <header class="bar">
+      <div class="wrap top">
+        <img class="logo" src="BGN.png" alt="Logo Badan Gizi Nasional" width="46" height="46" />
+        <div class="who">
+          <strong id="brand-name">SPPG Parang Tambung Kota Makassar</strong>
+          <span id="program-name">Program Makan Bergizi Gratis</span>
+        </div>
       </div>
     </header>
 
     <main>
-      <section class="safety" aria-label="Peringatan penting">
-        <p class="safety-main" id="safe-consumption-message">Batas aman konsumsi 2 jam setelah makanan diterima.</p>
-        <p class="safety-sub" id="allergy-message">Jika penerima manfaat punya riwayat alergi, sampaikan segera.</p>
-      </section>
+      <div class="stage">
+        <div class="wrap">
+          <section class="safety" aria-label="Peringatan penting">
+            <svg class="clock" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.4" />
+              <path d="M12 6.5V12l3.8 2.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+            </svg>
+            <div>
+              <p class="safety-main" id="safe-consumption-message">Batas aman konsumsi 2 jam setelah makanan diterima.</p>
+              <p class="safety-sub" id="allergy-message">Jika penerima manfaat punya riwayat alergi, sampaikan segera.</p>
+            </div>
+          </section>
 
-      <section class="today" aria-labelledby="page-title">
-        <h1 id="page-title">Menu Bergizi Hari Ini</h1>
-        <time id="serving-date" datetime="2026-10-20">Selasa, 20 Oktober 2026</time>
-        <p id="hero-intro">Menu, kandungan gizi tiap kelompok porsi, dan informasi konsumsi dalam satu halaman.</p>
-      </section>
+          <section class="today" aria-labelledby="page-title">
+            <h1 id="page-title">Menu Bergizi Hari Ini</h1>
+            <time id="serving-date" datetime="2026-10-20">Selasa, 20 Oktober 2026</time>
+            <p id="hero-intro">Menu, kandungan gizi tiap kelompok porsi, dan informasi konsumsi dalam satu halaman.</p>
+          </section>
 
-      <section id="menu" class="tray-wrap" aria-labelledby="menu-title">
-        <h2 id="menu-title">Isi ompreng hari ini</h2>
-        <ul class="tray" id="menu-list">
-          <li class="cell">Nasi Putih</li>
-          <li class="cell">Telur Ceplok Balado</li>
-          <li class="cell">Tempe Crispy Daun Jeruk</li>
-          <li class="cell">Tumis Sawi Hijau Jagung Wortel</li>
-          <li class="cell">Buah Apel</li>
-        </ul>
-      </section>
-
-      <section class="nutri" aria-labelledby="nutrition-title">
-        <h2 id="nutrition-title">Kandungan gizi per porsi</h2>
-        <div class="tabs" id="portion-selector" role="group" aria-label="Pilih kelompok porsi"></div>
-        <div class="nutri-body" aria-live="polite">
-          <div class="energy" id="nutrition-energy"></div>
-          <dl class="rows" id="nutrition-grid"></dl>
+          <section id="menu" class="tray-wrap" aria-labelledby="menu-title">
+            <h2 id="menu-title">Isi ompreng hari ini</h2>
+            <ul class="tray" id="menu-list" data-count="5">
+              <li class="cell">Nasi Putih</li>
+              <li class="cell">Telur Ceplok Balado</li>
+              <li class="cell">Tempe Crispy Daun Jeruk</li>
+              <li class="cell">Tumis Sawi Hijau Jagung Wortel</li>
+              <li class="cell">Buah Apel</li>
+            </ul>
+          </section>
         </div>
-      </section>
+      </div>
+
+      <div class="light">
+        <section class="wrap nutri" aria-labelledby="nutrition-title">
+          <h2 id="nutrition-title">Kandungan gizi per porsi</h2>
+          <div class="tabs" id="portion-selector" role="group" aria-label="Pilih kelompok porsi"></div>
+          <div class="nutri-body" aria-live="polite">
+            <div class="energy" id="nutrition-energy"></div>
+            <dl class="rows" id="nutrition-grid"></dl>
+          </div>
+        </section>
+      </div>
     </main>
 
-    <footer class="foot">
-      <h2 id="identity-title">SPPG Parang Tambung Kota Makassar</h2>
-      <p id="identity-unit">Satuan Pelayanan Pemenuhan Gizi</p>
-      <p id="identity-address">Parang Tambung, Kota Makassar, Sulawesi Selatan</p>
-      <a class="ig" id="instagram-link" href="https://www.instagram.com/sppgparangtambung" target="_blank" rel="noopener noreferrer" aria-label="Ikuti SPPG Parang Tambung di Instagram">
-        <img src="instagram.png" alt="" width="22" height="22" />
-        <span id="instagram-handle">@sppg.parangtambung</span>
-      </a>
-      <p class="small">Data diperbarui: <span id="last-updated">20 Oktober 2026</span>. Halaman ini bisa diperbarui tanpa mengganti kode QR.</p>
+    <footer class="foot-bg">
+      <div class="wrap foot">
+        <h2 id="identity-title">SPPG Parang Tambung Kota Makassar</h2>
+        <p id="identity-unit">Satuan Pelayanan Pemenuhan Gizi</p>
+        <p id="identity-address">Parang Tambung, Kota Makassar, Sulawesi Selatan</p>
+        <a class="ig" id="instagram-link" href="https://www.instagram.com/sppgparangtambung" target="_blank" rel="noopener noreferrer" aria-label="Ikuti SPPG Parang Tambung di Instagram">
+          <img src="instagram.png" alt="" width="22" height="22" />
+          <span id="instagram-handle">@sppg.parangtambung</span>
+        </a>
+        <p class="small">Data diperbarui: <span id="last-updated">20 Oktober 2026</span>. Halaman ini bisa diperbarui tanpa mengganti kode QR.</p>
+      </div>
     </footer>
   </body>
 </html>

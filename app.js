@@ -15,6 +15,7 @@
   const renderMenu = (items) => {
     const list = $("menu-list");
     if (!list || !Array.isArray(items)) return;
+    list.dataset.count = items.length;
     list.replaceChildren(...items.map((it, i) => {
       const li = el("li", "cell", it.value);
       li.style.setProperty("--i", i);
