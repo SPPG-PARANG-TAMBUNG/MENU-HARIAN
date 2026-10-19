@@ -24,15 +24,18 @@ window.LABEL_DATA = {
     date: "Selasa, 20 Oktober 2026",
   },
 
-  // MENU HARIAN: ganti HANYA teks setelah "value:" setiap hari.
-  // "kategori" adalah nama kolom di ompreng dan biasanya tidak perlu diubah.
-  // Jangan menukar urutan: posisi sekat di ompreng mengikuti urutan baris ini.
+  // Urutan 5 sekat standar Ompreng SUS304 (bebas ganti nama menu setiap hari):
+  // Baris 1: Makanan Pokok / Karbohidrat (Cekungan Bulat Kiri Bawah)
+  // Baris 2: Lauk Protein Hewani (Cekungan Oval Lebar Kanan Bawah)
+  // Baris 3: Lauk Protein Nabati (Cekungan Kapsul Kanan Atas)
+  // Baris 4: Sayuran & Serat (Cekungan Kapsul Kiri Atas)
+  // Baris 5: Buah / Pencuci Mulut (Cekungan Persegi Tengah Atas)
   menu: [
-    { kategori: "Karbohidrat utama", value: "Nasi Putih" },
-    { kategori: "Protein hewani", value: "Telur Ceplok Balado" },
-    { kategori: "Protein nabati", value: "Tempe Crispy Daun Jeruk" },
-    { kategori: "Sayuran & serat", value: "Tumis Sawi Hijau Jagung Wortel" },
-    { kategori: "Buah segar & vitamin", value: "Buah Apel" },
+    { value: "Nasi Putih" },
+    { value: "Telur Ceplok Balado" },
+    { value: "Tempe Crispy Daun Jeruk" },
+    { value: "Tumis Sawi Hijau Jagung Wortel" },
+    { value: "Buah Apel" },
   ],
 
   // Ganti nilai setiap kelompok sesuai perhitungan petugas/ahli gizi.
