@@ -24,16 +24,15 @@ window.LABEL_DATA = {
     date: "Selasa, 20 Oktober 2026",
   },
 
-  // Cukup ganti bagian value untuk memperbarui daftar menu.
-  // Tata letak ompreng paling pas untuk 5 menu dengan urutan:
-  // 1 nasi, 2 lauk hewani, 3 lauk nabati, 4 sayur, 5 buah.
-  // Jangan menekan Enter sebelum tanda kutip penutup.
+  // MENU HARIAN: ganti HANYA teks setelah "value:" setiap hari.
+  // "kategori" adalah nama kolom di ompreng dan biasanya tidak perlu diubah.
+  // Jangan menukar urutan: posisi sekat di ompreng mengikuti urutan baris ini.
   menu: [
-    { value: "Nasi Putih" },
-    { value: "Telur Ceplok Balado" },
-    { value: "Tempe Crispy Daun Jeruk" },
-    { value: "Tumis Sawi Hijau Jagung Wortel" },
-    { value: "Buah Apel" },
+    { kategori: "Karbohidrat utama", value: "Nasi Putih" },
+    { kategori: "Protein hewani", value: "Telur Ceplok Balado" },
+    { kategori: "Protein nabati", value: "Tempe Crispy Daun Jeruk" },
+    { kategori: "Sayuran & serat", value: "Tumis Sawi Hijau Jagung Wortel" },
+    { kategori: "Buah segar & vitamin", value: "Buah Apel" },
   ],
 
   // Ganti nilai setiap kelompok sesuai perhitungan petugas/ahli gizi.
