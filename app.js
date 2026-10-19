@@ -13,6 +13,17 @@
 
   /* Menu: urutan 1 nasi, 2 lauk hewani, 3 lauk nabati, 4 sayur, 5 buah */
   const ROLES = ["Karbohidrat", "Lauk hewani", "Lauk nabati", "Sayur", "Buah"];
+  /* Ilustrasi makanan per sekat (mengikuti urutan menu) */
+  const svg = (body) => `<svg class="food" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><ellipse cx="50" cy="82" rx="36" ry="7" fill="rgba(10,33,71,.18)"/>${body}</svg>`;
+  const STEAM = `<g class="steam"><path d="M38 20c-5-6 5-10 0-17"/><path d="M52 16c-5-6 5-10 0-17"/><path d="M66 20c-5-6 5-10 0-17"/></g>`;
+  const FOOD = [
+    svg(`<path d="M12 78C12 46 30 30 50 30s38 16 38 48z" fill="#fff" stroke="#c7d0d7" stroke-width="2"/><g fill="#e6ecf0"><ellipse cx="34" cy="54" rx="5" ry="2.4" transform="rotate(-25 34 54)"/><ellipse cx="52" cy="44" rx="5" ry="2.4" transform="rotate(15 52 44)"/><ellipse cx="62" cy="60" rx="5" ry="2.4" transform="rotate(-10 62 60)"/><ellipse cx="44" cy="66" rx="5" ry="2.4" transform="rotate(20 44 66)"/><ellipse cx="73" cy="69" rx="5" ry="2.4"/></g>${STEAM}`),
+    svg(`<path d="M18 64C14 42 34 28 56 32c22 4 30 22 24 38-6 14-34 14-46 8-8-4-14-8-16-14z" fill="#d98a2f"/><path d="M26 58C26 44 40 36 56 38" fill="none" stroke="#f0b25a" stroke-width="5" stroke-linecap="round"/><g fill="#b86a1c"><circle cx="62" cy="60" r="3"/><circle cx="46" cy="66" r="2.5"/><circle cx="70" cy="48" r="2"/></g>${STEAM}`),
+    svg(`<rect x="14" y="42" width="36" height="36" rx="8" fill="#e6b93a" transform="rotate(-8 32 60)"/><rect x="50" y="36" width="36" height="36" rx="8" fill="#f0cb55" transform="rotate(10 68 54)"/><path d="M22 54h16M58 48h16" stroke="#c99a1e" stroke-width="3" stroke-linecap="round"/>${STEAM}`),
+    svg(`<path d="M50 78C26 70 20 46 30 28c22 4 28 26 20 50z" fill="#5fae3a"/><path d="M50 78C74 70 80 46 70 28c-22 4-28 26-20 50z" fill="#7cc653"/><path d="M50 78C40 60 44 40 50 26c8 14 10 36 0 52z" fill="#4a9a2e"/><circle cx="76" cy="74" r="6" fill="#f08a2c"/>${STEAM}`),
+    svg(`<path d="M50 36C30 24 14 42 20 64c5 16 20 20 30 14 10 6 25 2 30-14 6-22-10-40-30-28z" fill="#e0485f"/><path d="M50 36c0-10 4-16 12-20" stroke="#6b4a2b" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M54 26c8-8 18-6 20-4-2 8-12 12-20 4z" fill="#5fae3a"/><path d="M30 52c0-8 6-12 10-12" stroke="#f08a98" stroke-width="4" fill="none" stroke-linecap="round"/>`),
+  ];
+
   const renderMenu = (items) => {
     const list = $("menu-list");
     if (!list || !Array.isArray(items)) return;
@@ -29,6 +40,7 @@
         btn.addEventListener("click", () => btn.setAttribute("aria-pressed", String(li.classList.toggle("on"))));
       }
       li.style.setProperty("--i", i);
+      if (known) li.insertAdjacentHTML("afterbegin", FOOD[i]);
       li.append(btn);
       return li;
     }));
@@ -93,54 +105,6 @@
     select(0);
   };
 
-  /* Pengatur waktu batas aman konsumsi (tersimpan di perangkat) */
-  const initTimer = () => {
-    const root = $("timer");
-    if (!root) return;
-    const hours = Number(data.safety.hours) || 2;
-    const total = hours * 3600000;
-    const KEY = "sppg-menu-timer";
-    const C = 2 * Math.PI * 52;
-    const arc = $("timer-arc"), time = $("timer-time"), status = $("timer-status"), btn = $("timer-start"), live = $("timer-live");
-    const p2 = (n) => String(n).padStart(2, "0");
-    const clock = (ms) => { const s = Math.ceil(ms / 1000); return `${Math.floor(s / 3600)}:${p2(Math.floor((s % 3600) / 60))}:${p2(s % 60)}`; };
-    const store = {
-      get: () => { try { return Number(localStorage.getItem(KEY)) || 0; } catch { return 0; } },
-      set: (v) => { try { v ? localStorage.setItem(KEY, v) : localStorage.removeItem(KEY); } catch { /* penyimpanan dinonaktifkan */ } },
-    };
-    let start = store.get();
-    if (start && Date.now() - start > total + 6 * 3600000) { start = 0; store.set(0); }
-    let last = "", armed = null;
-    arc.style.strokeDasharray = C;
-
-    const say = { ok: "Hitungan dimulai.", warn: "Sisa waktu aman kurang dari 30 menit.", late: "Batas aman konsumsi sudah terlewat. Jangan dikonsumsi." };
-    const tick = () => {
-      const left = start ? start + total - Date.now() : total;
-      const state = !start ? "idle" : left <= 0 ? "late" : left <= 1800000 ? "warn" : "ok";
-      root.dataset.state = state;
-      time.textContent = state === "late" ? "Habis" : clock(left);
-      arc.style.strokeDashoffset = C * (1 - Math.max(left, 0) / total);
-      status.textContent = state === "idle" ? "Belum dihitung"
-        : state === "late" ? "Jangan dikonsumsi lagi"
-        : `Aman sampai ${new Date(start + total).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }).replace(":", ".")}`;
-      if (!armed) btn.textContent = state === "idle" ? `Mulai hitung ${hours} jam` : "Atur ulang";
-      btn.classList.toggle("ghost", state !== "idle");
-      if (state !== last) { if (say[state]) live.textContent = say[state]; last = state; }
-    };
-    btn.addEventListener("click", () => {
-      if (!start) { start = Date.now(); store.set(start); tick(); return; }
-      if (!armed) {
-        btn.textContent = "Yakin atur ulang?";
-        armed = setTimeout(() => { armed = null; tick(); }, 3000);
-        return;
-      }
-      clearTimeout(armed); armed = null; start = 0; store.set(0); tick();
-    });
-    document.addEventListener("visibilitychange", tick);
-    setInterval(tick, 500);
-    tick();
-  };
-
   document.title = data.page.title;
   const meta = document.querySelector('meta[name="description"]');
   if (meta && data.page.description) meta.setAttribute("content", data.page.description);
@@ -154,7 +118,6 @@
   renderGroups(data.nutrition.groups);
   setText("safe-consumption-message", data.safety.consumption);
   setText("allergy-message", data.safety.allergy);
-  initTimer();
 
   setText("brand-name", data.sppg.name);
   setText("identity-title", data.sppg.name);
