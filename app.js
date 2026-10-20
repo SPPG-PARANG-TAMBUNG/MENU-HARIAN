@@ -50,7 +50,9 @@
       aura3: "rgba(184, 137, 47, 0.18)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
       getDesc: (name) =>
-        `${name} sebagai sumber serat pangan, vitamin, dan mineral untuk melancarkan pencernaan serta menjaga daya tahan tubuh.`,
+        name.toLowerCase().includes("labu siam") || name.toLowerCase().includes("jagung")
+          ? `${name} memadukan sayuran dan jagung sebagai sumber serat, vitamin, serta mineral untuk mendukung pencernaan dan melengkapi kebutuhan gizi harian.`
+          : `${name} sebagai sumber serat pangan, vitamin, dan mineral untuk mendukung pencernaan serta menjaga daya tahan tubuh.`,
     },
     {
       sourceIndex: 4, // Baris ke-5 di content.js: Buah
@@ -62,7 +64,9 @@
       aura3: "rgba(59, 135, 40, 0.16)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>`,
       getDesc: (name) =>
-        `${name} sebagai sumber vitamin alami dan antioksidan segar untuk membantu penyerapan zat gizi secara optimal.`,
+        name.toLowerCase().includes("melon")
+          ? `${name} mengandung banyak air serta vitamin untuk membantu memenuhi kebutuhan cairan dan melengkapi asupan gizi harian.`
+          : `${name} sebagai sumber vitamin alami dan antioksidan untuk melengkapi asupan gizi harian.`,
     },
     {
       sourceIndex: 2, // Baris ke-3 di content.js: Protein Nabati
@@ -74,7 +78,9 @@
       aura3: "rgba(10, 33, 71, 0.14)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>`,
       getDesc: (name) =>
-        `${name} melengkapi kebutuhan protein nabati, kalsium, dan zat gizi mikro yang diolah secara higienis sesuai standar pemenuhan gizi.`,
+        name.toLowerCase().includes("tahu")
+          ? `${name} menyediakan protein nabati untuk membantu mendukung pertumbuhan dan pemeliharaan jaringan tubuh; saus BBQ menambah cita rasa pada lauk.`
+          : `${name} melengkapi kebutuhan protein nabati dan zat gizi mikro untuk mendukung pertumbuhan serta pemeliharaan tubuh.`,
     },
     {
       sourceIndex: 0, // Baris ke-1 di content.js: Karbohidrat / Makanan Pokok
@@ -86,7 +92,7 @@
       aura3: "rgba(59, 135, 40, 0.16)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a8 8 0 0 1-8 8 8 8 0 0 1-8-8Z"/><path d="M6 9c1.5-2 4-3 6-3s4.5 1 6 3"/></svg>`,
       getDesc: (name) =>
-        `${name} sebagai sumber karbohidrat dan energi utama untuk menunjang konsentrasi belajar serta aktivitas harian.`,
+        `${name} sebagai sumber karbohidrat utama untuk menyediakan energi bagi aktivitas dan konsentrasi sepanjang hari.`,
     },
     {
       sourceIndex: 1, // Baris ke-2 di content.js: Protein Hewani
@@ -98,7 +104,9 @@
       aura3: "rgba(59, 135, 40, 0.2)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M5 17a7 7 0 0 1 14 0"/><path d="M12 7v3"/><circle cx="12" cy="6" r="1"/></svg>`,
       getDesc: (name) =>
-        `${name} sebagai sumber protein hewani dan asam amino esensial untuk pertumbuhan serta daya tahan tubuh.`,
+        name.toLowerCase().includes("ayam")
+          ? `${name} menjadi sumber protein hewani dan asam amino esensial yang membantu pertumbuhan serta pemeliharaan jaringan tubuh.`
+          : `${name} sebagai sumber protein hewani untuk membantu mendukung pertumbuhan dan pemeliharaan jaringan tubuh.`,
     },
   ];
 
