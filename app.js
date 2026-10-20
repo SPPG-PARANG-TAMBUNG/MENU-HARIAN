@@ -44,7 +44,7 @@
       sourceIndex: 3, // Baris ke-4 di content.js: Sayuran
       className: "cell-top-left",
       tag: "Sayuran",
-      kicker: "Sekat Kiri Atas · Sayuran & Serat",
+      kicker: "Sayuran & Serat",
       aura1: "rgba(59, 135, 40, 0.25)",
       aura2: "rgba(10, 33, 71, 0.14)",
       aura3: "rgba(184, 137, 47, 0.18)",
@@ -56,7 +56,7 @@
       sourceIndex: 4, // Baris ke-5 di content.js: Buah
       className: "cell-top-center",
       tag: "Buah Segar",
-      kicker: "Sekat Tengah Atas · Buah & Vitamin",
+      kicker: "Buah & Vitamin",
       aura1: "rgba(220, 38, 38, 0.2)",
       aura2: "rgba(184, 137, 47, 0.22)",
       aura3: "rgba(59, 135, 40, 0.16)",
@@ -68,7 +68,7 @@
       sourceIndex: 2, // Baris ke-3 di content.js: Protein Nabati
       className: "cell-top-right",
       tag: "Protein Nabati",
-      kicker: "Sekat Kanan Atas · Lauk Nabati",
+      kicker: "Lauk Nabati",
       aura1: "rgba(212, 155, 39, 0.26)",
       aura2: "rgba(59, 135, 40, 0.18)",
       aura3: "rgba(10, 33, 71, 0.14)",
@@ -80,7 +80,7 @@
       sourceIndex: 0, // Baris ke-1 di content.js: Karbohidrat / Makanan Pokok
       className: "cell-bottom-left",
       tag: "Karbohidrat",
-      kicker: "Sekat Kiri Bawah · Makanan Pokok",
+      kicker: "Makanan Pokok",
       aura1: "rgba(184, 137, 47, 0.26)",
       aura2: "rgba(10, 33, 71, 0.18)",
       aura3: "rgba(59, 135, 40, 0.16)",
@@ -92,7 +92,7 @@
       sourceIndex: 1, // Baris ke-2 di content.js: Protein Hewani
       className: "cell-bottom-right",
       tag: "Protein Hewani",
-      kicker: "Sekat Kanan Bawah · Lauk Utama",
+      kicker: "Lauk Utama",
       aura1: "rgba(217, 119, 6, 0.24)",
       aura2: "rgba(10, 33, 71, 0.2)",
       aura3: "rgba(59, 135, 40, 0.2)",
