@@ -50,8 +50,8 @@
       aura3: "rgba(184, 137, 47, 0.18)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
       getDesc: (name) =>
-        name.toLowerCase().includes("kol") || name.toLowerCase().includes("wortel")
-          ? `${name} memadukan sayuran sumber serat, vitamin, dan mineral untuk membantu mendukung pencernaan serta melengkapi kebutuhan gizi harian.`
+        name.toLowerCase().includes("nangka") || name.toLowerCase().includes("kacang panjang")
+          ? `${name} memadukan sayuran yang menyediakan serat, vitamin, dan mineral untuk membantu mendukung pencernaan serta melengkapi kebutuhan gizi harian.`
           : `${name} sebagai sumber serat pangan, vitamin, dan mineral untuk mendukung pencernaan serta menjaga daya tahan tubuh.`,
     },
     {
