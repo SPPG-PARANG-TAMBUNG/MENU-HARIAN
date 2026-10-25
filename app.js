@@ -50,8 +50,8 @@
       aura3: "rgba(184, 137, 47, 0.18)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
       getDesc: (name) =>
-        name.toLowerCase().includes("nangka") || name.toLowerCase().includes("kacang panjang")
-          ? `${name} memadukan sayuran yang menyediakan serat, vitamin, dan mineral untuk membantu mendukung pencernaan serta melengkapi kebutuhan gizi harian.`
+        name.toLowerCase().includes("labu siam") || name.toLowerCase().includes("jagung")
+          ? `${name} memadukan labu siam dan jagung sebagai sumber serat, vitamin, mineral, serta karbohidrat untuk melengkapi sajian harian.`
           : `${name} sebagai sumber serat pangan, vitamin, dan mineral untuk mendukung pencernaan serta menjaga daya tahan tubuh.`,
     },
     {
@@ -78,7 +78,7 @@
       aura3: "rgba(10, 33, 71, 0.14)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>`,
       getDesc: (name) =>
-        name.toLowerCase().includes("perkedel tahu")
+        name.toLowerCase().includes("martabak tahu")
           ? `${name} berbahan dasar tahu yang menyediakan protein nabati untuk membantu mendukung pertumbuhan dan pemeliharaan jaringan tubuh.`
           : `${name} melengkapi kebutuhan protein nabati dan zat gizi mikro untuk mendukung pertumbuhan serta pemeliharaan tubuh.`,
     },
@@ -104,8 +104,8 @@
       aura3: "rgba(59, 135, 40, 0.2)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M5 17a7 7 0 0 1 14 0"/><path d="M12 7v3"/><circle cx="12" cy="6" r="1"/></svg>`,
       getDesc: (name) =>
-        name.toLowerCase().includes("ayam goreng padang")
-          ? `${name} menjadi sumber protein hewani yang membantu mendukung pertumbuhan dan pemeliharaan jaringan tubuh; sambal ijo menambah cita rasa khas Padang.`
+        name.toLowerCase().includes("ayam bumbu rendang")
+          ? `${name} menjadi sumber protein hewani untuk membantu mendukung pertumbuhan dan pemeliharaan jaringan tubuh, dengan bumbu rendang yang kaya rempah.`
           : name.toLowerCase().includes("telur")
             ? `${name} menyediakan protein hewani untuk mendukung pertumbuhan dan pemeliharaan jaringan tubuh.`
             : `${name} sebagai sumber protein hewani untuk membantu mendukung pertumbuhan dan pemeliharaan jaringan tubuh.`,
