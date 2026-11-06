@@ -66,7 +66,9 @@
       getDesc: (name) =>
         name.toLowerCase().includes("anggur")
           ? `${name} melengkapi asupan buah harian dengan serat, vitamin, dan senyawa antioksidan alami.`
-          : `${name} sebagai sumber vitamin alami dan antioksidan untuk melengkapi asupan gizi harian.`,
+          : name.toLowerCase().includes("pisang emas")
+            ? `${name} melengkapi asupan buah harian dengan karbohidrat, serat, dan kalium.`
+            : `${name} sebagai sumber vitamin alami dan antioksidan untuk melengkapi asupan gizi harian.`,
     },
     {
       sourceIndex: 2, // Baris ke-3 di content.js: Protein Nabati
@@ -104,8 +106,8 @@
       aura3: "rgba(59, 135, 40, 0.2)",
       icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M5 17a7 7 0 0 1 14 0"/><path d="M12 7v3"/><circle cx="12" cy="6" r="1"/></svg>`,
       getDesc: (name) =>
-        name.toLowerCase().includes("telur ceplok asam manis")
-          ? `${name} menyediakan protein hewani dari telur, dipadukan dengan saus asam manis sebagai pelengkap cita rasa.`
+        name.toLowerCase().includes("ayam bakar padang")
+          ? `${name} menyediakan protein hewani dari ayam, dengan sambal tomat hijau sebagai pelengkap cita rasa.`
           : name.toLowerCase().includes("telur")
             ? `${name} menyediakan protein hewani untuk mendukung pertumbuhan dan pemeliharaan jaringan tubuh.`
             : `${name} sebagai sumber protein hewani untuk membantu mendukung pertumbuhan dan pemeliharaan jaringan tubuh.`,
@@ -154,7 +156,28 @@
 
     const rawValues = items.map((x) => x.value);
 
-    const renderedSlots = TRAY_SLOTS.map((slot, i) => {
+    const slotDefinitions = rawValues.length === 4
+      ? TRAY_SLOTS
+          .filter((slot) => slot.sourceIndex !== 2)
+          .map((slot) => {
+            if (slot.sourceIndex === 3) {
+              return {
+                ...slot,
+                sourceIndex: 2,
+                tag: "Lauk Nabati & Sayuran",
+                kicker: "Lauk Nabati & Sayuran",
+                getDesc: (name) =>
+                  `${name} memadukan tahu sebagai sumber protein nabati dengan kacang panjang dan wortel yang menyumbang serat, vitamin, serta mineral.`,
+              };
+            }
+            if (slot.sourceIndex === 4) {
+              return { ...slot, sourceIndex: 3 };
+            }
+            return slot;
+          })
+      : TRAY_SLOTS;
+
+    const renderedSlots = slotDefinitions.map((slot, i) => {
       const dishName = rawValues[slot.sourceIndex] || rawValues[i] || slot.tag;
       return { ...slot, dishName, index: i };
     });
