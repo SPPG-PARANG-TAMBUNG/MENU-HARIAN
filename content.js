@@ -20,8 +20,8 @@ window.LABEL_DATA = {
 
   serving: {
     // Format machineDate harus TAHUN-BULAN-TANGGAL.
-    machineDate: "2026-11-05",
-    date: "Kamis, 5 November 2026",
+    machineDate: "2026-11-06",
+    date: "Jumat, 6 November 2026",
   },
 
   // Urutan 5 sekat standar Ompreng SUS304 (bebas ganti nama menu setiap hari):
@@ -32,11 +32,10 @@ window.LABEL_DATA = {
   // Baris 5: Buah / Pencuci Mulut (Cekungan Persegi Tengah Atas)
   menu: [
     { value: "Nasi Putih" },
-    { value: "Telur Ceplok Asam Manis" },
-    { value: "Tempe Mendoan" },
-    { value: "Mix Vegetable" },
-    { value: "Buah Anggur" },
-  ],
+    { value: "Ayam Bakar Padang + Sambal Tomat Hijau" },
+    { value: "Tumis Tahu Kacang Panjang + Wortel" },
+    { value: "Buah Pisang Emas" },
+    ],
 
   // Ganti nilai setiap kelompok sesuai perhitungan petugas/ahli gizi.
   nutrition: {
@@ -44,41 +43,41 @@ window.LABEL_DATA = {
       {
         name: "Porsi Kecil",
         items: [
-          { label: "Energi", value: "551,88", unit: "kkal", highlight: true },
-          { label: "Protein", value: "19,47", unit: "g" },
-          { label: "Karbohidrat", value: "76,23", unit: "g" },
-          { label: "Lemak", value: "20,54", unit: "g" },
-          { label: "Serat", value: "1,73", unit: "g" },
+          { label: "Energi", value: "520,15", unit: "kkal", highlight: true },
+          { label: "Protein", value: "17,27", unit: "g" },
+          { label: "Karbohidrat", value: "69,41", unit: "g" },
+          { label: "Lemak", value: "20,74", unit: "g" },
+          { label: "Serat", value: "1,63", unit: "g" },
         ],
       },
       {
         name: "Porsi Besar",
         items: [
-          { label: "Energi", value: "602,51", unit: "kkal", highlight: true },
-          { label: "Protein", value: "20,62", unit: "g" },
-          { label: "Karbohidrat", value: "87,67", unit: "g" },
-          { label: "Lemak", value: "20,77", unit: "g" },
-          { label: "Serat", value: "1,76", unit: "g" },
+          { label: "Energi", value: "604,39", unit: "kkal", highlight: true },
+          { label: "Protein", value: "20,29", unit: "g" },
+          { label: "Karbohidrat", value: "81,70", unit: "g" },
+          { label: "Lemak", value: "23,48", unit: "g" },
+          { label: "Serat", value: "1,86", unit: "g" },
         ],
       },
       {
         name: "Porsi Balita",
         items: [
-          { label: "Energi", value: "507,26", unit: "kkal", highlight: true },
-          { label: "Protein", value: "18,42", unit: "g" },
-          { label: "Karbohidrat", value: "66,59", unit: "g" },
-          { label: "Lemak", value: "20,33", unit: "g" },
-          { label: "Serat", value: "1,71", unit: "g" },
+          { label: "Energi", value: "475,52", unit: "kkal", highlight: true },
+          { label: "Protein", value: "16,22", unit: "g" },
+          { label: "Karbohidrat", value: "59,77", unit: "g" },
+          { label: "Lemak", value: "20,53", unit: "g" },
+          { label: "Serat", value: "1,60", unit: "g" },
         ],
       },
       {
         name: "Porsi Bumil Busui",
         items: [
-          { label: "Energi", value: "787,16", unit: "kkal", highlight: true },
-          { label: "Protein", value: "30,48", unit: "g" },
-          { label: "Karbohidrat", value: "110,41", unit: "g" },
-          { label: "Lemak", value: "26,96", unit: "g" },
-          { label: "Serat", value: "1,95", unit: "g" },
+          { label: "Energi", value: "732,54", unit: "kkal", highlight: true },
+          { label: "Protein", value: "26,57", unit: "g" },
+          { label: "Karbohidrat", value: "101,22", unit: "g" },
+          { label: "Lemak", value: "26,57", unit: "g" },
+          { label: "Serat", value: "1,94", unit: "g" },
         ],
       },
     ],
@@ -96,6 +95,6 @@ window.LABEL_DATA = {
     address: "Parang Tambung, Kota Makassar, Sulawesi Selatan",
     instagramLabel: "@sppg.parangtambung",
     instagramUrl: "https://www.instagram.com/sppgparangtambung",
-    lastUpdated: "5 November 2026",
+    lastUpdated: "6 November 2026",
   },
 };
