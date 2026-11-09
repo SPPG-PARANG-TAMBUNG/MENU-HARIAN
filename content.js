@@ -20,8 +20,8 @@ window.LABEL_DATA = {
 
   serving: {
     // Format machineDate harus TAHUN-BULAN-TANGGAL.
-    machineDate: "2026-11-06",
-    date: "Jumat, 6 November 2026",
+    machineDate: "2026-11-09",
+    date: "Senin, 9 November 2026",
   },
 
   // Urutan 5 sekat standar Ompreng SUS304 (bebas ganti nama menu setiap hari):
@@ -32,10 +32,11 @@ window.LABEL_DATA = {
   // Baris 5: Buah / Pencuci Mulut (Cekungan Persegi Tengah Atas)
   menu: [
     { value: "Nasi Putih" },
-    { value: "Ayam Bakar Padang + Sambal Tomat Hijau" },
-    { value: "Tumis Tahu Kacang Panjang + Wortel" },
-    { value: "Buah Pisang Emas" },
-    ],
+    { value: "Ayam Bistik Mentega" },
+    { value: "Tahu Sambal Tomat" },
+    { value: "Tumis Wortel Labu Siam" },
+    { value: "Buah Semangka" },
+  ],
 
   // Ganti nilai setiap kelompok sesuai perhitungan petugas/ahli gizi.
   nutrition: {
@@ -43,41 +44,41 @@ window.LABEL_DATA = {
       {
         name: "Porsi Kecil",
         items: [
-          { label: "Energi", value: "520,15", unit: "kkal", highlight: true },
-          { label: "Protein", value: "17,27", unit: "g" },
-          { label: "Karbohidrat", value: "69,41", unit: "g" },
-          { label: "Lemak", value: "20,74", unit: "g" },
-          { label: "Serat", value: "1,63", unit: "g" },
+          { label: "Energi", value: "526,00", unit: "kkal", highlight: true },
+          { label: "Protein", value: "16,67", unit: "g" },
+          { label: "Karbohidrat", value: "58,39", unit: "g" },
+          { label: "Lemak", value: "26,14", unit: "g" },
+          { label: "Serat", value: "1,99", unit: "g" },
         ],
       },
       {
         name: "Porsi Besar",
         items: [
-          { label: "Energi", value: "604,39", unit: "kkal", highlight: true },
-          { label: "Protein", value: "20,29", unit: "g" },
-          { label: "Karbohidrat", value: "81,70", unit: "g" },
-          { label: "Lemak", value: "23,48", unit: "g" },
-          { label: "Serat", value: "1,86", unit: "g" },
+          { label: "Energi", value: "606,03", unit: "kkal", highlight: true },
+          { label: "Protein", value: "19,64", unit: "g" },
+          { label: "Karbohidrat", value: "69,41", unit: "g" },
+          { label: "Lemak", value: "28,89", unit: "g" },
+          { label: "Serat", value: "2,09", unit: "g" },
         ],
       },
       {
         name: "Porsi Balita",
         items: [
-          { label: "Energi", value: "475,52", unit: "kkal", highlight: true },
-          { label: "Protein", value: "16,22", unit: "g" },
-          { label: "Karbohidrat", value: "59,77", unit: "g" },
-          { label: "Lemak", value: "20,53", unit: "g" },
-          { label: "Serat", value: "1,60", unit: "g" },
+          { label: "Energi", value: "481,38", unit: "kkal", highlight: true },
+          { label: "Protein", value: "15,62", unit: "g" },
+          { label: "Karbohidrat", value: "48,76", unit: "g" },
+          { label: "Lemak", value: "25,93", unit: "g" },
+          { label: "Serat", value: "1,96", unit: "g" },
         ],
       },
       {
         name: "Porsi Bumil Busui",
         items: [
-          { label: "Energi", value: "732,54", unit: "kkal", highlight: true },
-          { label: "Protein", value: "26,57", unit: "g" },
-          { label: "Karbohidrat", value: "101,22", unit: "g" },
-          { label: "Lemak", value: "26,57", unit: "g" },
-          { label: "Serat", value: "1,94", unit: "g" },
+          { label: "Energi", value: "722,08", unit: "kkal", highlight: true },
+          { label: "Protein", value: "25,06", unit: "g" },
+          { label: "Karbohidrat", value: "89,62", unit: "g" },
+          { label: "Lemak", value: "30,75", unit: "g" },
+          { label: "Serat", value: "2,21", unit: "g" },
         ],
       },
     ],
@@ -95,6 +96,6 @@ window.LABEL_DATA = {
     address: "Parang Tambung, Kota Makassar, Sulawesi Selatan",
     instagramLabel: "@sppg.parangtambung",
     instagramUrl: "https://www.instagram.com/sppgparangtambung",
-    lastUpdated: "6 November 2026",
+    lastUpdated: "9 November 2026",
   },
 };
