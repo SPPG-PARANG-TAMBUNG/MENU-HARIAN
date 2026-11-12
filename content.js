@@ -62,6 +62,16 @@ window.LABEL_DATA = {
         ],
       },
       {
+        name: "Porsi Balita",
+        items: [
+          { label: "Energi", value: "483,31", unit: "kkal", highlight: true },
+          { label: "Protein", value: "17,92", unit: "g" },
+          { label: "Karbohidrat", value: "59,00", unit: "g" },
+          { label: "Lemak", value: "20,64", unit: "g" },
+          { label: "Serat", value: "1,84", unit: "g" },
+        ],
+      },
+      {
         name: "Porsi Bumil Busui",
         items: [
           { label: "Energi", value: "767,03", unit: "kkal", highlight: true },
