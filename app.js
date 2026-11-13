@@ -129,9 +129,11 @@
       tag: "Sayur",
       kicker: "Sayuran & serat",
       getDesc: (n) =>
-        has(n, "tumis wortel pakcoy")
-          ? `${n} memadukan wortel dan pakcoy yang menyumbang serat, vitamin, serta mineral untuk melengkapi sajian harian.`
-          : `${n} sebagai sumber serat pangan, vitamin, dan mineral untuk mendukung pencernaan serta menjaga daya tahan tubuh.`,
+        has(n, "tumis sawi putih jagung kembang kol")
+          ? `${n} memadukan sawi putih, jagung, dan kembang kol yang menyumbang serat, vitamin, serta mineral untuk melengkapi sajian harian.`
+          : has(n, "tumis wortel pakcoy")
+            ? `${n} memadukan wortel dan pakcoy yang menyumbang serat, vitamin, serta mineral untuk melengkapi sajian harian.`
+            : `${n} sebagai sumber serat pangan, vitamin, dan mineral untuk mendukung pencernaan serta menjaga daya tahan tubuh.`,
     },
     {
       key: "buah",
@@ -155,9 +157,11 @@
       tag: "Nabati",
       kicker: "Lauk protein nabati",
       getDesc: (n) =>
-        has(n, "bola bola tahu")
-          ? `${n} menggunakan tahu sebagai sumber protein nabati yang membantu melengkapi kebutuhan protein harian.`
-          : has(n, "tahu crispy")
+        has(n, "tempe balado")
+          ? `${n} menggunakan tempe sebagai sumber protein nabati, dengan bumbu balado sebagai pelengkap cita rasa.`
+          : has(n, "bola bola tahu")
+            ? `${n} menggunakan tahu sebagai sumber protein nabati yang membantu melengkapi kebutuhan protein harian.`
+            : has(n, "tahu crispy")
             ? `${n} menggunakan tahu sebagai sumber protein nabati, dengan tekstur crispy sebagai pelengkap sajian.`
             : has(n, "tahu sambal tomat")
               ? `${n} menggunakan tahu sebagai sumber protein nabati, dengan sambal tomat sebagai pelengkap cita rasa.`
@@ -187,8 +191,10 @@
               ? `${n} menyediakan protein hewani dari ayam, dengan saus bistik mentega sebagai pelengkap cita rasa.`
               : has(n, "ayam bakar padang")
                 ? `${n} menyediakan protein hewani dari ayam, dengan sambal tomat hijau sebagai pelengkap cita rasa.`
-                : has(n, "telur")
-                  ? `${n} menyediakan protein hewani untuk mendukung pertumbuhan dan pemeliharaan jaringan tubuh.`
+                : has(n, "telur bulat kecap")
+                  ? `${n} menyediakan protein hewani dari telur, dengan kecap sebagai pelengkap cita rasa.`
+                  : has(n, "telur")
+                    ? `${n} menyediakan protein hewani untuk mendukung pertumbuhan dan pemeliharaan jaringan tubuh.`
                   : `${n} sebagai sumber protein hewani untuk membantu mendukung pertumbuhan dan pemeliharaan jaringan tubuh.`,
     },
   ];
