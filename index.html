@@ -2,7 +2,7 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta
       name="description"
       content="Lihat menu harian, rincian kandungan gizi tiap kelompok porsi, dan panduan konsumsi aman Program Makan Bergizi Gratis SPPG Parang Tambung Makassar."
@@ -20,15 +20,19 @@
       name="twitter:description"
       content="Lihat menu harian, rincian kandungan gizi tiap kelompok porsi, dan panduan konsumsi aman Program Makan Bergizi Gratis SPPG Parang Tambung Makassar."
     />
-    <meta name="theme-color" content="#0a2147" />
+    <meta name="theme-color" content="#0a1a33" />
     <title>Menu Hari Ini — SPPG Parang Tambung Kota Makassar</title>
+    <link rel="icon" href="BGN.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
     <script type="application/ld+json" id="schema-jsonld">
       {
         "@context": "https://schema.org",
@@ -50,155 +54,211 @@
           a.src = `app.js?v=${v}`;
           document.head.appendChild(a);
         };
-        c.onerror = () => console.error("Data menu gagal dimuat. Silakan muat ulang halaman.");
+        c.onerror = () => {
+          console.error("Data menu gagal dimuat. Silakan muat ulang halaman.");
+          document.documentElement.classList.add("is-ready");
+        };
         document.head.appendChild(c);
       });
     </script>
   </head>
   <body>
     <a class="skip-link" href="#menu">Lewati ke menu</a>
+    <div class="grain" aria-hidden="true"></div>
 
-    <!-- Living Multi-Layer Interactive Background -->
-    <div class="bg-stage" aria-hidden="true">
-      <div class="aurora-orb orb-1"></div>
-      <div class="aurora-orb orb-2"></div>
-      <div class="aurora-orb orb-3"></div>
-      <div class="bg-grid-pattern"></div>
-      <canvas id="bg-canvas"></canvas>
-    </div>
-
-    <header class="top">
-      <div class="top-brand">
-        <img
-          class="logo"
-          src="BGN.png"
-          alt="Logo Badan Gizi Nasional"
-          width="46"
-          height="46"
-          referrerpolicy="no-referrer"
-        />
-        <div class="who">
+    <!-- Bar atas -->
+    <header class="bar" id="bar">
+      <a class="brand" href="#menu" aria-label="Kembali ke menu hari ini">
+        <img class="logo" src="BGN.png" alt="Logo Badan Gizi Nasional" width="40" height="40" />
+        <span class="brand-text">
           <strong id="brand-name">SPPG Parang Tambung Kota Makassar</strong>
           <span id="program-name">Program Makan Bergizi Gratis</span>
-        </div>
-      </div>
+        </span>
+      </a>
 
-      <nav class="top-nav" aria-label="Navigasi halaman">
-        <a href="#menu">Isi Ompreng</a>
-        <a href="#nutrisi">Kandungan Gizi</a>
-        <a href="#identitas">Kontak SPPG</a>
+      <nav class="bar-nav" aria-label="Navigasi halaman">
+        <a href="#menu" data-spy="menu">Ompreng</a>
+        <a href="#aman" data-spy="aman">Waktu aman</a>
+        <a href="#nutrisi" data-spy="nutrisi">Gizi</a>
+        <a href="#identitas" data-spy="identitas">Kontak</a>
       </nav>
 
-      <button type="button" class="share-btn" id="copy-menu-btn">
-        Salin Info Menu
+      <button type="button" class="share-btn" id="copy-menu-btn" aria-label="Bagikan info menu hari ini">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M5 13v6.5h14V13" />
+        </svg>
+        <span>Bagikan</span>
       </button>
     </header>
 
     <main>
-      <!-- Peringatan Keamanan Pangan & Alergi -->
-      <section class="safety" aria-label="Peringatan penting">
-        <div class="safety-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="8" x2="12" y2="12" />
-            <line x1="12" y1="16" x2="12.01" y2="16" />
-          </svg>
-        </div>
-        <div class="safety-content">
-          <p class="safety-main" id="safe-consumption-message">
-            Batas aman konsumsi 2 jam setelah makanan diterima.
-          </p>
-          <p class="safety-sub" id="allergy-message">
-            Jika penerima manfaat punya riwayat alergi, sampaikan segera.
-          </p>
-        </div>
-      </section>
+      <!-- HERO: tanggal, judul, ompreng -->
+      <section id="menu" class="hero" aria-labelledby="page-title">
+        <div class="hero-light" aria-hidden="true"></div>
+        <canvas class="steam" id="steam-canvas" aria-hidden="true"></canvas>
 
-      <!-- Hero Judul & Tanggal -->
-      <section class="today" aria-labelledby="page-title">
-        <time id="serving-date" datetime="2026-10-20">Selasa, 20 Oktober 2026</time>
-        <h1 id="page-title">Menu Bergizi Hari Ini</h1>
-        <p id="hero-intro">
-          Menu, kandungan gizi tiap kelompok porsi, dan informasi konsumsi dalam satu halaman.
-        </p>
-      </section>
+        <div class="hero-inner">
+          <div class="hero-head">
+            <a class="status" id="status-chip" href="#aman">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span id="status-text">Batas aman konsumsi 2 jam setelah diterima</span>
+            </a>
 
-      <!-- Visualisasi Ompreng Stainless SUS304 (3 Sekat Atas, 2 Sekat Bawah) -->
-      <section id="menu" class="tray-wrap" aria-labelledby="menu-title">
-        <div class="section-bar">
-          <h2 id="menu-title">Isi ompreng hari ini</h2>
-          <span class="section-hint">Ketuk sekat untuk info nutrisi</span>
-        </div>
-
-        <div class="tray-frame">
-          <ul class="tray" id="menu-list">
-            <li class="cell">Nasi Putih</li>
-            <li class="cell">Telur Ceplok Balado</li>
-            <li class="cell">Tempe Crispy Daun Jeruk</li>
-            <li class="cell">Tumis Sawi Hijau Jagung Wortel</li>
-            <li class="cell">Buah Apel</li>
-          </ul>
-          <div class="tray-stamp" aria-hidden="true">SUS304</div>
-        </div>
-
-        <!-- Panel Deskripsi Sekat (Template Universal) -->
-        <div class="cell-detail" id="cell-detail" aria-live="polite">
-          <div class="cell-detail-icon" id="detail-icon" aria-hidden="true"></div>
-          <div class="cell-detail-body">
-            <div class="cell-detail-kicker" id="detail-kicker">Sekat Kiri Bawah · Karbohidrat Utama</div>
-            <strong class="cell-detail-title" id="detail-title">Nasi Putih</strong>
-            <p class="cell-detail-desc" id="detail-desc">
-              Sumber karbohidrat utama pada cekungan bulat kiri bawah untuk memasok energi harian dan menjaga fokus belajar.
+            <time class="date" id="serving-date" datetime="2026-11-12">Kamis, 12 November 2026</time>
+            <h1 id="page-title" class="title">Menu Bergizi Hari Ini</h1>
+            <p id="hero-intro" class="intro">
+              Lihat menu, kandungan gizi tiap kelompok porsi, dan informasi konsumsi dalam satu halaman.
             </p>
           </div>
+
+          <div class="tray-col">
+            <div class="tray-stage" id="tray-stage">
+              <div class="tray" id="tray">
+                <ul class="tray-grid" id="menu-list" aria-label="Isi ompreng hari ini">
+                  <li class="cell">Nasi Putih</li>
+                  <li class="cell">Udang Tumis Bawang Putih</li>
+                  <li class="cell">Bola Bola Tahu</li>
+                  <li class="cell">Tumis Wortel Pakcoy</li>
+                  <li class="cell">Buah Semangka</li>
+                </ul>
+                <span class="tray-stamp" aria-hidden="true">SUS304 · 18/8</span>
+                <span class="tray-shine" aria-hidden="true"></span>
+              </div>
+              <div class="tray-shadow" aria-hidden="true"></div>
+            </div>
+            <p class="tray-hint" id="tray-hint">
+              <span class="hint-finger" aria-hidden="true"></span>
+              Ketuk sekat untuk melihat isinya
+            </p>
+          </div>
+
+          <!-- Panel detail sekat -->
+          <article class="detail" id="cell-detail" aria-live="polite">
+            <div class="detail-mark" id="detail-mark" aria-hidden="true"></div>
+            <div class="detail-body">
+              <p class="detail-kicker" id="detail-kicker">Makanan pokok</p>
+              <h2 class="detail-title" id="detail-title">Nasi Putih</h2>
+              <p class="detail-desc" id="detail-desc">
+                Sumber karbohidrat utama untuk menyediakan energi bagi aktivitas dan konsentrasi sepanjang hari.
+              </p>
+              <div class="detail-nav" id="detail-nav">
+                <button type="button" class="round-btn" id="detail-prev" aria-label="Sekat sebelumnya">
+                  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+                </button>
+                <div class="detail-steps" id="detail-steps" role="tablist" aria-label="Pilih sekat"></div>
+                <button type="button" class="round-btn" id="detail-next" aria-label="Sekat berikutnya">
+                  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+                </button>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
-      <!-- Kandungan Gizi per Porsi -->
-      <section id="nutrisi" class="nutri" aria-labelledby="nutrition-title">
-        <div class="section-bar">
-          <h2 id="nutrition-title">Kandungan gizi per porsi</h2>
+      <!-- WAKTU AMAN: hitung mundur hidup -->
+      <section id="aman" class="safe" aria-labelledby="safe-title">
+        <div class="safe-inner">
+          <div class="safe-copy" data-reveal>
+            <h2 id="safe-title" class="h2">Habiskan sebelum waktunya habis</h2>
+            <p class="safe-main" id="safe-consumption-message">
+              Batas aman konsumsi 2 jam setelah makanan diterima.
+            </p>
+            <p class="safe-sub" id="allergy-message">
+              Jika ada penerima manfaat yang memiliki riwayat alergi tertentu, silakan sampaikan segera.
+            </p>
+          </div>
+
+          <div class="timer" id="timer" data-state="idle" data-reveal>
+            <div class="timer-dial">
+              <svg class="timer-svg" viewBox="0 0 240 240" aria-hidden="true">
+                <g class="ticks" id="timer-ticks"></g>
+                <circle class="timer-track" cx="120" cy="120" r="96" />
+                <circle class="timer-arc" id="timer-arc" cx="120" cy="120" r="96" />
+                <circle class="timer-head" id="timer-head" cx="120" cy="24" r="7" />
+              </svg>
+              <div class="timer-read">
+                <span class="timer-time" id="timer-time" aria-live="off">2:00:00</span>
+                <span class="timer-label" id="timer-label">belum dihitung</span>
+              </div>
+            </div>
+            <div class="timer-actions">
+              <button type="button" class="btn-primary" id="timer-start">
+                <span class="btn-ripple-host"></span>
+                Makanan sudah saya terima
+              </button>
+              <button type="button" class="btn-text" id="timer-reset" hidden>Atur ulang</button>
+              <p class="timer-note" id="timer-note" role="status">
+                Ketuk saat ompreng sampai di tangan. Hitungan tersimpan di ponsel ini.
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="tabs" id="portion-selector" role="group" aria-label="Pilih kelompok porsi"></div>
-
-        <div class="nutri-body" aria-live="polite">
-          <div class="energy-wrap">
-            <div class="energy" id="nutrition-energy">
-              <b>561,89</b>
-              <span>kkal energi</span>
-            </div>
-            <span class="active-group-badge" id="active-group-label">Porsi Kecil</span>
-          </div>
-
-          <!-- Proporsi Kalori Makronutrisi Hidup -->
-          <div class="macro-strip">
-            <div class="macro-strip-head">
-              <span>Komposisi Energi Makro</span>
-              <span id="macro-summary-text">Karbohidrat 54% · Lemak 33% · Protein 13%</span>
-            </div>
-            <div class="macro-bar-multi" role="img" aria-label="Proporsi kalori makronutrisi">
-              <div class="macro-piece piece-carb" id="piece-carb"></div>
-              <div class="macro-piece piece-fat" id="piece-fat"></div>
-              <div class="macro-piece piece-prot" id="piece-prot"></div>
+      <!-- KANDUNGAN GIZI -->
+      <section id="nutrisi" class="nutri" aria-labelledby="nutrition-title">
+        <div class="nutri-inner">
+          <div class="nutri-head" data-reveal>
+            <h2 id="nutrition-title" class="h2">Kandungan gizi per porsi</h2>
+            <div class="seg" id="portion-selector" role="group" aria-label="Pilih kelompok porsi">
+              <span class="seg-thumb" id="seg-thumb" aria-hidden="true"></span>
             </div>
           </div>
 
-          <dl class="rows" id="nutrition-grid"></dl>
+          <div class="nutri-grid" id="nutri-swipe">
+            <div class="energy-block" data-reveal>
+              <p class="energy-group" id="active-group-label">Porsi Kecil</p>
+              <div class="energy" id="nutrition-energy" aria-live="polite">
+                <b class="odo" id="energy-odo">471,17</b>
+                <span class="energy-unit" id="energy-unit">kkal energi</span>
+              </div>
+
+              <div class="macro" id="macro">
+                <div class="donut-wrap">
+                  <svg class="donut" viewBox="0 0 140 140" role="img" aria-label="Proporsi kalori makronutrisi">
+                    <circle class="donut-track" cx="70" cy="70" r="54" />
+                    <circle class="donut-seg seg-carb" id="seg-carb" cx="70" cy="70" r="54" data-key="carb" />
+                    <circle class="donut-seg seg-fat" id="seg-fat" cx="70" cy="70" r="54" data-key="fat" />
+                    <circle class="donut-seg seg-prot" id="seg-prot" cx="70" cy="70" r="54" data-key="prot" />
+                  </svg>
+                  <div class="donut-center">
+                    <b id="donut-pct">54%</b>
+                    <span id="donut-name">karbohidrat</span>
+                  </div>
+                </div>
+                <div class="macro-legend" id="macro-legend">
+                  <p class="macro-title">Asal energi</p>
+                  <button type="button" class="legend-item" data-key="carb" aria-pressed="true">
+                    <i class="sw sw-carb"></i><span>Karbohidrat</span><b id="lg-carb">54%</b>
+                  </button>
+                  <button type="button" class="legend-item" data-key="fat" aria-pressed="false">
+                    <i class="sw sw-fat"></i><span>Lemak</span><b id="lg-fat">30%</b>
+                  </button>
+                  <button type="button" class="legend-item" data-key="prot" aria-pressed="false">
+                    <i class="sw sw-prot"></i><span>Protein</span><b id="lg-prot">16%</b>
+                  </button>
+                  <p class="sr-only" id="macro-summary-text">Karbohidrat 54% · Lemak 30% · Protein 16%</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rows-block" data-reveal>
+              <p class="rows-hint">Ketuk zat gizi untuk membandingkan semua porsi</p>
+              <div class="rows" id="nutrition-grid"></div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
 
-    <!-- Footer Identitas SPPG -->
+    <!-- Footer identitas -->
     <footer id="identitas" class="foot">
-      <div class="foot-grid">
-        <div class="foot-info">
-          <h2 id="identity-title">SPPG Parang Tambung Kota Makassar</h2>
-          <p id="identity-unit">Satuan Pelayanan Pemenuhan Gizi</p>
-          <p id="identity-address">Parang Tambung, Kota Makassar, Sulawesi Selatan</p>
-        </div>
-
-        <div class="foot-social">
+      <div class="foot-inner">
+        <div class="foot-top" data-reveal>
+          <div>
+            <p class="foot-unit" id="identity-unit">Satuan Pelayanan Pemenuhan Gizi</p>
+            <p class="foot-addr" id="identity-address">Parang Tambung, Kota Makassar, Sulawesi Selatan</p>
+          </div>
           <a
             class="ig"
             id="instagram-link"
@@ -207,24 +267,46 @@
             rel="noopener noreferrer"
             aria-label="Ikuti SPPG Parang Tambung di Instagram"
           >
-            <svg class="ig-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5.5" />
+              <circle cx="12" cy="12" r="4.2" />
+              <circle cx="17.3" cy="6.7" r="1" class="fillc" />
             </svg>
             <span id="instagram-handle">@sppg.parangtambung</span>
+            <svg class="ig-arrow" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
           </a>
         </div>
+        <h2 class="foot-name" id="identity-title">SPPG Parang Tambung Kota Makassar</h2>
+        <p class="small">
+          Data diperbarui <span id="last-updated">12 November 2026</span>. Halaman ini bisa diperbarui tanpa mengganti kode QR.
+        </p>
       </div>
-
-      <p class="small">
-        Data diperbarui: <span id="last-updated">20 Oktober 2026</span>. Halaman ini bisa diperbarui tanpa mengganti kode QR.
-      </p>
     </footer>
 
-    <!-- Copy Toast -->
-    <div class="toast" id="copy-toast" role="status" aria-live="polite" hidden>
-      Ringkasan menu hari ini berhasil disalin!
+    <!-- Dock navigasi mobile -->
+    <nav class="dock" id="dock" aria-label="Navigasi cepat">
+      <span class="dock-pill" id="dock-pill" aria-hidden="true"></span>
+      <a href="#menu" data-spy="menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3.5" /><path d="M2.5 11.5h19M9 5v6.5M15 5v6.5M12 11.5V19" /></svg>
+        <span>Ompreng</span>
+      </a>
+      <a href="#aman" data-spy="aman">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8" /><path d="M12 9v4l2.5 2.5M9.5 2.5h5" /></svg>
+        <span>Waktu</span>
+      </a>
+      <a href="#nutrisi" data-spy="nutrisi">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>
+        <span>Gizi</span>
+      </a>
+      <a href="#identitas" data-spy="identitas">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.5" /></svg>
+        <span>Kontak</span>
+      </a>
+    </nav>
+
+    <div class="toast" id="copy-toast" role="status" aria-live="polite">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+      <span id="toast-text">Ringkasan menu hari ini sudah disalin</span>
     </div>
   </body>
 </html>
